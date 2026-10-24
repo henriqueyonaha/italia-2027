@@ -1,0 +1,1106 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Viagem Itália 2027</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="theme-color" content="#16140f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600;6..96,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: caderno de viagem claro. Barra fixa com abas coloridas; cada etapa tem a sua cor (vermelho pompeiano, oliva toscano, ocre de Siena, azul alpino, vinho de Verona, verde da laguna). Tema escuro fixo, a pedido. */
+:root{
+  color-scheme:dark;
+  --bg:#16140f; --surface:#211d18; --ink:#efe8dd; --muted:#aa9f92; --line:#3a342c; --on:#16140f;
+  --ro:#f08a6e; --ro-soft:#3a221b;          /* Roma, vermelho pompeiano */
+  --fi:#a9c46a; --fi-soft:#263019;          /* Florença, oliva toscano */
+  --si:#f0bf4a; --si-soft:#372b12;          /* Siena, ocre */
+  --bz:#71b4e6; --bz-soft:#162a36;          /* Bolzano, azul alpino */
+  --vr:#e08ab0; --vr-soft:#3a1f2c;          /* Verona, vinho */
+  --ve:#5fd0c8; --ve-soft:#12302e;          /* Veneza, laguna */
+  --alert:#f08a78; --alert-soft:#3c211c;
+  --sky1:#1d2f3d; --sky2:#3b2d22; --sun:#e0a83a;
+  --mtn1:#4a6070; --mtn2:#3a5262; --snow:#d4dad8; --hill1:#4f6338; --hill2:#3d5029; --cypress:#22341a;
+  --stone:#a08560; --stone2:#86694a; --brick:#a24e30; --water:#2c6680; --water2:#4d8fa3; --gondola:#0e0d0b;
+  --sea:#142630; --land:#262219; --land-it:#2e2920; --border:#4a4236;
+  --font-display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --font-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-data:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --radius:12px;
+}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.55;margin:0}
+.wrap{max-width:1680px;margin:0 auto;padding-left:max(clamp(16px,3vw,48px),env(safe-area-inset-left,0px));padding-right:max(clamp(16px,3vw,48px),env(safe-area-inset-right,0px))}
+h1,h2,h3,h4{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.15}
+p{margin:0}
+a{color:var(--bz)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--si);outline-offset:2px;border-radius:4px}
+.mono{font-family:var(--font-data);font-variant-numeric:tabular-nums}
+.eyebrow{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.hint{font-size:12.5px;color:var(--muted)}
+.tbc{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:var(--alert);background:var(--alert-soft);border-radius:4px;padding:1px 6px;vertical-align:1px;white-space:nowrap}
+.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.03em;border-radius:999px;padding:2px 9px;white-space:nowrap;background:var(--cs,var(--line));color:var(--c,var(--muted))}
+.c-ro{--c:var(--ro);--cs:var(--ro-soft)} .c-fi{--c:var(--fi);--cs:var(--fi-soft)} .c-si{--c:var(--si);--cs:var(--si-soft)} .c-bz{--c:var(--bz);--cs:var(--bz-soft)} .c-vr{--c:var(--vr);--cs:var(--vr-soft)} .c-ve{--c:var(--ve);--cs:var(--ve-soft)} .c-al{--c:var(--alert);--cs:var(--alert-soft)} .c-mu{--c:var(--muted);--cs:var(--line)}
+
+/* Barra do topo */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--surface);border-bottom:1px solid var(--line)}
+.topbar::after{content:"";display:block;height:4px;background:linear-gradient(90deg,var(--ro) 0 20%,var(--fi) 20% 40%,var(--bz) 40% 60%,var(--vr) 60% 80%,var(--ve) 80%)}
+.topbar .wrap{display:flex;align-items:center;gap:14px;min-height:54px}
+.brand{display:flex;align-items:center;gap:8px;font-family:var(--font-display);font-weight:700;font-size:19px;white-space:nowrap}
+.brand svg{width:34px;height:22px;flex:none}
+.tabslider{position:relative;flex:1;min-width:0;display:flex;align-items:stretch}
+.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0;position:relative;scroll-behavior:smooth;scroll-snap-type:x proximity}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{scroll-snap-align:center;background:none;border:0;padding:15px 10px 12px;font-weight:600;font-size:14px;color:var(--muted);cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.tabs button i{width:8px;height:8px;border-radius:50%;background:var(--tc);display:inline-block;transition:transform .2s}
+.tabs button[aria-selected="true"]{color:var(--ink)}
+.tabind{position:absolute;left:0;bottom:0;height:3px;border-radius:3px 3px 0 0;background:var(--ro);width:0;transition:transform .35s cubic-bezier(.3,.7,.2,1),width .35s cubic-bezier(.3,.7,.2,1),background-color .35s;pointer-events:none}
+.tabarrow{position:absolute;top:0;bottom:0;z-index:2;width:40px;border:0;cursor:pointer;color:var(--ink);font-size:20px;font-weight:700;display:flex;align-items:center}
+.tabarrow.l{left:0;justify-content:flex-start;padding-left:4px;background:linear-gradient(90deg,var(--surface) 55%,transparent)}
+.tabarrow.r{right:0;justify-content:flex-end;padding-right:4px;background:linear-gradient(270deg,var(--surface) 55%,transparent)}
+.badge{display:inline-block;min-width:18px;padding:0 5px;border-radius:9px;background:var(--alert);color:var(--on);font-size:11px;line-height:18px;text-align:center}
+@media (max-width:640px){.brand span{display:none}}
+
+main .wrap{padding-block:24px 64px}
+section.panel{display:grid;gap:22px}
+.panel:not([hidden]){animation:fadein .35s ease-out}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.panel-head{display:grid;gap:6px;border-left:5px solid var(--c,var(--ro));padding-left:14px}
+.panel-head h2{font-size:clamp(28px,4vw,38px);font-weight:600}
+.panel-head p{color:var(--muted);max-width:75ch}
+h3.sec{font-size:24px;font-weight:600;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+h3.sec small{font-family:var(--font-body);font-size:13px;color:var(--muted);font-weight:500}
+
+/* Hero */
+.hero{background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 100%);border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);position:relative}
+.hero .in{padding:26px 22px 0;display:grid;gap:10px;position:relative;z-index:1}
+.skylayer{position:absolute;inset:0;pointer-events:none}
+.skylayer>div{position:absolute;inset:0;opacity:0}
+.skylayer .dusk{background:linear-gradient(180deg,#6d5a8c 0%,#d9825a 65%,#f2b36b 100%)}
+.skylayer .night{background:linear-gradient(180deg,#0c1631 0%,#1d2d55 60%,#3a4d78 100%)}
+.skylayer .stars i{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;animation:twinkle 4s ease-in-out infinite}
+@keyframes twinkle{50%{opacity:.3}}
+.hero .landscape,.hero .stats{position:relative;z-index:1}
+.hero .in h1,.hero .in .sub,.hero .in .eyebrow{transition:color 2.5s ease}
+.hero.is-night .in h1,.hero.is-night .in .sub{color:#f4efe4}
+.hero.is-night .in h1 em{color:#f2a48f}
+.hero.is-night .in .eyebrow{color:rgba(244,239,228,.75)}
+.hero h1{font-size:clamp(40px,7vw,76px);font-weight:700;letter-spacing:-.01em;line-height:1}
+.hero h1 em{font-style:italic;font-weight:500;color:var(--ro)}
+.hero .sub{font-family:var(--font-display);font-style:italic;font-size:clamp(17px,2.2vw,22px);max-width:40ch}
+.cities{display:flex;flex-wrap:wrap;gap:6px}
+.cities span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px 11px;font-size:13px;display:inline-flex;gap:6px;align-items:center}
+.cities span i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.cities span b{font-family:var(--font-data);font-weight:500;font-size:11.5px;color:var(--muted)}
+.landscape{display:block;width:100%;height:auto;margin-top:8px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border-top:1px solid var(--line)}
+.stats>div{background:var(--surface);padding:12px 14px;border-top:4px solid var(--c)}
+.stats .v{font-family:var(--font-display);font-size:28px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--c);line-height:1.2}
+.stats .k{font-size:12px;color:var(--muted)}
+@media (max-width:620px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stats .v{font-size:21px}}
+.cloud{animation:drift 70s linear infinite}
+.cloud.c2{animation-duration:95s;animation-delay:-40s}
+@keyframes drift{from{transform:translateX(-240px)}to{transform:translateX(1100px)}}
+.sun{transform-box:fill-box;transform-origin:center;animation:glow 6s ease-in-out infinite}
+@keyframes glow{50%{transform:scale(1.06)}}
+.shim{animation:shim 5s ease-in-out infinite}
+.shim.s2{animation-delay:-2.5s}
+@keyframes shim{50%{opacity:.25;transform:translateX(12px)}}
+
+/* Etapas (cards que viram) */
+.phases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:820px){.phases{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:460px){.phases{grid-template-columns:1fr}}
+.phase{perspective:1400px;display:grid;transition:transform .22s}
+.phase .pin{display:grid;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.3,.7,.2,1)}
+.phase.flipped .pin{transform:rotateY(180deg)}
+.phase .face{grid-area:1/1;background:var(--cs);border-radius:var(--radius);padding:14px;display:flex;flex-direction:column;gap:6px;backface-visibility:hidden;-webkit-backface-visibility:hidden;cursor:pointer}
+.phase .back{transform:rotateY(180deg);background:var(--surface);box-shadow:inset 0 0 0 2px var(--cs)}
+.phase .num{font-family:var(--font-display);font-size:34px;font-weight:700;line-height:1;color:var(--c)}
+.phase .d{font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--c)}
+.phase .n{font-family:var(--font-display);font-size:22px;font-weight:700}
+.phase .hl{font-size:13px;color:var(--muted)}
+.phase .pact{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto;padding-top:8px;flex-wrap:wrap}
+.phase .pgo{border:0;background:none;color:var(--c);font-weight:700;font-size:13px;cursor:pointer;padding:4px 0}
+.phase .pgo:hover{text-decoration:underline}
+.phase .pflip{border:1.5px solid var(--c);background:var(--surface);color:var(--c);border-radius:999px;padding:4px 11px;font-size:12.5px;font-weight:700;cursor:pointer;transition:background-color .18s,color .18s}
+.phase .pflip:hover{background:var(--c);color:var(--on)}
+.phase .acts{list-style:none;margin:2px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.phase .acts li{background:var(--cs);border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:600}
+@media (hover:hover){.phase:hover{transform:translateY(-3px)}}
+.arrive{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;display:grid;gap:8px;border-top:4px solid var(--ro)}
+.arrive h4{font-size:20px}
+.arrive p{max-width:80ch}
+
+/* Mapa */
+.mapcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.mapwrap{background:var(--sea);min-width:0;display:flex;justify-content:center}
+.mapwrap svg{display:block;width:100%;height:auto;max-width:620px}
+@media (min-width:1100px){.mapcard{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(320px,1fr)}.mapwrap svg{max-height:min(680px,80vh)}.legs{border-top:0!important;border-left:1px solid var(--line);grid-template-columns:1fr!important;height:0;min-height:100%;overflow-y:auto}}
+.legs{padding:14px;display:grid;gap:6px;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));align-content:start;border-top:1px solid var(--line)}
+.legs>.eyebrow{grid-column:1/-1}
+.leg{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;padding:9px 10px;border-radius:8px;border:1px solid transparent;cursor:pointer;background:none;text-align:left;transition:background-color .18s,border-color .18s}
+.leg:hover{background:var(--bg)}
+.leg[aria-pressed="true"]{border-color:var(--c);background:var(--cs)}
+.leg .ic{width:28px;height:28px;border-radius:50%;background:var(--c);color:var(--on);display:grid;place-items:center;font-size:13px;font-weight:700;grid-row:span 3}
+.leg b{font-size:14px}
+.leg span{font-size:12.5px;color:var(--muted)}
+.leg a{font-size:12.5px;font-weight:600;color:var(--c)}
+.mlabel{font-family:var(--font-body);font-size:13px;font-weight:700;fill:var(--ink);paint-order:stroke;stroke:var(--land-it);stroke-width:3.5px;stroke-linejoin:round}
+.mlabel.small{font-size:11px;font-weight:600;fill:var(--muted)}
+.mcountry{font-family:var(--font-display);font-size:13px;fill:var(--muted);letter-spacing:.14em;opacity:.8}
+.msea{font-family:var(--font-display);font-style:italic;font-size:14px;fill:#5f8ea2;letter-spacing:.08em}
+.route-path{fill:none;stroke-linecap:round;transition:opacity .2s,stroke-width .2s}
+
+/* Roteiro */
+.route{display:flex;overflow-x:auto;padding:4px 0 2px;scrollbar-width:thin}
+.stop{flex:1 0 108px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:5px;position:relative;background:none;border:0;cursor:pointer;padding:0 4px}
+.stop::before{content:"";position:absolute;top:9px;left:-50%;width:100%;height:2px;background:repeating-linear-gradient(90deg,var(--muted) 0 6px,transparent 6px 11px)}
+.stop:first-child::before{display:none}
+.dot{width:20px;height:20px;border-radius:50%;background:var(--surface);border:3px solid var(--c,var(--ink));z-index:1;transition:background-color .2s}
+.stop[aria-pressed="true"] .dot{background:var(--c,var(--ink))}
+.stop .nm{font-weight:600;font-size:13px;line-height:1.2}
+.stop .dt{font-size:11.5px;color:var(--muted)}
+.stage{display:grid;gap:12px}
+.stage-h{border-radius:var(--radius);padding:16px 18px;background:var(--cs);display:grid;gap:6px}
+.stage-h .eyebrow{color:var(--c)}
+.stage-h h3{font-size:clamp(26px,3.6vw,34px);font-weight:700;color:var(--c)}
+.stage-h .hotel{font-size:13.5px;font-weight:600}
+.stage-h p{max-width:85ch;font-size:14.5px}
+.days{display:grid;gap:10px}
+@media (min-width:1280px){.days{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.day{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);display:grid;grid-template-columns:84px minmax(0,1fr);overflow:hidden;align-content:start;transition:box-shadow .22s,border-color .22s}
+@media (hover:hover){.day:hover{box-shadow:0 8px 20px -14px rgba(0,0,0,.55);border-color:var(--c)}}
+.day .date{padding:14px 8px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px;background:var(--cs);color:var(--c)}
+.day .date .wd{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:700}
+.day .date .d{font-family:var(--font-display);font-size:34px;font-weight:700;line-height:1}
+.day .date .m{font-size:12px;font-weight:600}
+.day .date .tag{margin-top:6px;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--surface);border-radius:4px;padding:1px 6px}
+.day .body{padding:12px 14px 14px;display:grid;gap:10px;min-width:0;align-content:start}
+.day h4{font-size:21px;font-weight:600}
+.day .lead{font-size:13.5px;color:var(--muted);font-style:italic;margin-top:2px}
+.slots{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.slot{display:grid;grid-template-columns:104px minmax(0,1fr);gap:12px;padding:8px 0;border-top:1px dashed var(--line);font-size:14px}
+.slot:first-child{border-top:0}
+.slot .t{font-family:var(--font-data);font-size:12.5px;font-weight:500;color:var(--c);padding-top:1px}
+.slot b{font-weight:700}
+@media (max-width:560px){.day{grid-template-columns:62px minmax(0,1fr)}.day .date .d{font-size:26px}.slot{grid-template-columns:1fr;gap:2px}}
+.tip{background:var(--si-soft);border-radius:10px;padding:10px 12px;font-size:13.5px}
+.tip .eyebrow{color:var(--si);display:block;margin-bottom:3px}
+.linkbtn{background:none;border:0;padding:0;color:var(--c,var(--bz));font-weight:700;font-size:13.5px;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+
+/* Hospedagem */
+.stays{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.stay{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:grid;grid-template-rows:auto 1fr}
+.stay .top{background:var(--cs);padding:14px 16px;display:grid;gap:2px}
+.stay .top .eyebrow{color:var(--c)}
+.stay .top h4{font-size:22px;font-weight:700;color:var(--c)}
+.stay .bd{padding:14px 16px;display:grid;gap:10px;align-content:start}
+.stay dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;margin:0;font-size:14px}
+.stay dt{color:var(--muted)}
+.stay dd{margin:0}
+.stay .nights{font-family:var(--font-display);font-size:30px;font-weight:700;color:var(--c);line-height:1}
+.stay .nights small{font-family:var(--font-body);font-size:13px;font-weight:500;color:var(--muted)}
+.stay .links{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;font-weight:600}
+.stay .links a{color:var(--c)}
+.nightbar{display:flex;height:34px;border-radius:8px;overflow:hidden;border:1px solid var(--line)}
+.nightbar span{display:grid;place-items:center;color:var(--on);font-size:12px;font-weight:700;background:var(--c);min-width:0;white-space:nowrap;overflow:hidden}
+
+/* Deslocamentos */
+.tablewrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:14px}
+th,td{text-align:left;padding:11px 14px;border-top:1px solid var(--line);vertical-align:top}
+th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-top:0;background:var(--bg)}
+td .sm{display:block;font-size:12.5px;color:var(--muted)}
+td.cost{font-family:var(--font-data);white-space:nowrap;text-align:right}
+th.cost{text-align:right}
+td .lg{display:inline-flex;align-items:center;gap:8px;font-weight:600}
+td .lg i{width:10px;height:10px;border-radius:50%;background:var(--c);flex:none}
+tr.total td{background:var(--bg);font-weight:700}
+tr.total td.cost{font-size:16px}
+.note{background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--c,var(--si));border-radius:var(--radius);padding:12px 14px;font-size:14px;display:grid;gap:4px}
+.note .eyebrow{color:var(--c,var(--si))}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.opt{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;display:grid;gap:8px;align-content:start;cursor:pointer;text-align:left;transition:border-color .2s,box-shadow .2s,transform .2s}
+.opt:disabled{cursor:default}
+.opt[aria-pressed="true"]{border-color:var(--ve);box-shadow:0 0 0 1px var(--ve)}
+@media (hover:hover){.opt:not(:disabled):hover{transform:translateY(-2px)}}
+.opt .eyebrow{color:var(--ve)}
+.opt h4{font-size:19px;font-weight:600}
+.opt p{font-size:14px}
+.opt dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;margin:0;font-size:13.5px}
+.opt dt{color:var(--muted)}
+.opt dd{margin:0;font-weight:600}
+.opt .sel{font-size:12.5px;font-weight:700;color:var(--ve)}
+.sumcard{background:linear-gradient(150deg,#0f5e5b,#1f4f75);color:#f4efe4;border-radius:var(--radius);padding:18px 20px;display:grid;gap:10px}
+.sumcard .eyebrow{color:rgba(244,239,228,.8)}
+.sumcard .big{font-family:var(--font-display);font-size:clamp(32px,5vw,44px);font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.sumcard p{font-size:14px;max-width:80ch}
+.buy{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;display:grid;gap:8px;align-content:start;border-top:4px solid var(--c,var(--line))}
+.box .eyebrow{color:var(--c,var(--muted))}
+.box h4{font-size:20px;font-weight:600}
+.box p,.box li{font-size:14px}
+.box ul{margin:0;padding-left:18px;display:grid;gap:4px}
+.box dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;margin:0;font-size:13.5px}
+.box dt{color:var(--muted)}
+.box dd{margin:0}
+.names{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+.names div{background:var(--bg);border-radius:8px;padding:8px 10px;font-size:13.5px}
+.names div span{display:block;font-size:12px;color:var(--muted)}
+.names div b{font-family:var(--font-data);font-weight:500}
+
+/* Restaurantes */
+.meals{display:grid;gap:8px}
+.meal{display:grid;grid-template-columns:110px 92px minmax(0,1fr);gap:12px;align-items:baseline;background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--c);border-radius:10px;padding:10px 14px;font-size:14px}
+.meal .dt{font-family:var(--font-data);font-size:12.5px;color:var(--c);font-weight:500}
+.meal .k{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+@media (max-width:560px){.meal{grid-template-columns:1fr;gap:2px}}
+.pfilters{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.chipbtn{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:background-color .18s,color .18s,border-color .18s}
+.chipbtn i{width:8px;height:8px;border-radius:50%;background:var(--c,var(--ink))}
+.chipbtn[aria-pressed="true"]{background:var(--c,var(--ink));color:var(--on);border-color:var(--c,var(--ink))}
+.chipbtn[aria-pressed="true"] i{background:var(--on)}
+
+/* Reservas */
+.syncline{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.syncline i{width:8px;height:8px;border-radius:50%;background:var(--muted);display:inline-block;flex:none}
+.syncline.on i{background:var(--fi)}
+.progress{height:10px;background:var(--line);border-radius:5px;overflow:hidden}
+.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--fi),var(--ve));transition:width .3s}
+.tasks{display:grid;gap:8px}
+.task{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:start;background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--c,var(--line));border-radius:var(--radius);padding:12px 14px}
+.task input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--fi);cursor:pointer}
+.task label{cursor:pointer;display:grid;gap:2px}
+.task label b{font-weight:600}
+.task label span{font-size:13px;color:var(--muted)}
+.task label q{font-size:13px;font-style:italic;color:var(--ink);quotes:"“" "”"}
+.task.done label b{text-decoration:line-through;color:var(--muted)}
+.when{font-size:11.5px;font-weight:700;border-radius:4px;padding:2px 8px;white-space:nowrap}
+.when.now{background:var(--alert-soft);color:var(--alert)}
+.when.soon{background:var(--si-soft);color:var(--si)}
+.when.later{background:var(--fi-soft);color:var(--fi)}
+.task.done .when{opacity:.5}
+@media (max-width:520px){.task{grid-template-columns:auto minmax(0,1fr)}.task .when{grid-column:2;justify-self:start}}
+.grouph{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted);margin-top:8px}
+
+/* Sugestões */
+.sugintro{background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius);padding:14px 16px;font-size:14px;display:grid;gap:6px}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:12px}
+.scard{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:var(--radius);padding:14px 16px;display:grid;gap:8px;align-content:start;transition:transform .22s,box-shadow .22s}
+@media (hover:hover){.scard:hover{transform:translateY(-3px);box-shadow:0 10px 24px -14px rgba(0,0,0,.5)}}
+.scard .meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.scard h4{font-size:19px;font-weight:600}
+.scard p{font-size:14px}
+.scard ul{margin:0;padding-left:18px;font-size:14px;display:grid;gap:3px}
+.scard .src{font-size:12.5px;color:var(--muted)}
+.scard .src a{color:var(--muted)}
+.scard .sfoot{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:9px;margin-top:2px}
+.addbtn{border:1.5px solid var(--c);background:var(--surface);color:var(--c);border-radius:999px;padding:4px 12px;font-size:12.5px;font-weight:700;cursor:pointer;transition:background-color .18s,color .18s}
+.addbtn[aria-pressed="true"]{background:var(--c);color:var(--on)}
+.addbtn:disabled{opacity:.6;cursor:default}
+.weather{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.wx{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;display:grid;gap:6px;border-top:4px solid var(--c)}
+.wx .pl{font-weight:600;font-size:14px}
+.wx .when2{font-size:11.5px;color:var(--muted)}
+.wx .t{display:flex;align-items:baseline;gap:8px;font-family:var(--font-display);font-weight:700}
+.wx .hi{font-size:28px;color:var(--ro)}
+.wx .lo{font-size:19px;color:var(--bz)}
+.wx .bar{height:6px;border-radius:3px;background:var(--line);position:relative;overflow:hidden}
+.wx .bar span{position:absolute;top:0;bottom:0;border-radius:3px;background:linear-gradient(90deg,var(--bz),var(--si),var(--ro))}
+.checks{margin:0;padding-left:18px;display:grid;gap:6px;font-size:14px}
+.sources{display:grid;gap:6px;font-size:13.5px;padding-left:18px;margin:0}
+
+@media (hover:hover){.tabs button:hover{color:var(--ink)}.tabs button:hover i{transform:scale(1.4)}.chipbtn:hover{border-color:var(--c,var(--ink))}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">
+      <svg viewBox="0 0 68 44" aria-hidden="true"><path fill="var(--stone2)" d="M2 44 V14 Q2 6 10 5 L58 1 Q66 1 66 8 V44 Z"/><g fill="var(--surface)"><rect x="8" y="30" width="7" height="14" rx="3.5"/><rect x="20" y="30" width="7" height="14" rx="3.5"/><rect x="32" y="30" width="7" height="14" rx="3.5"/><rect x="44" y="30" width="7" height="14" rx="3.5"/><rect x="56" y="30" width="6" height="14" rx="3"/><rect x="8" y="15" width="7" height="10" rx="3.5"/><rect x="20" y="14" width="7" height="10" rx="3.5"/><rect x="32" y="13" width="7" height="10" rx="3.5"/><rect x="44" y="12" width="7" height="10" rx="3.5"/><rect x="56" y="11" width="6" height="10" rx="3"/></g></svg>
+      <span>Itália 2027</span>
+    </div>
+    <div class="tabslider">
+      <button class="tabarrow l" id="tabL" aria-label="Abas anteriores" hidden>‹</button>
+      <nav class="tabs" role="tablist" aria-label="Seções">
+        <button role="tab" data-tab="panorama" aria-selected="true" style="--tc:var(--ro)"><i></i>Panorama</button>
+        <button role="tab" data-tab="roteiro" aria-selected="false" style="--tc:var(--fi)"><i></i>Roteiro</button>
+        <button role="tab" data-tab="hospedagem" aria-selected="false" style="--tc:var(--vr)"><i></i>Hospedagem</button>
+        <button role="tab" data-tab="deslocamentos" aria-selected="false" style="--tc:var(--bz)"><i></i>Deslocamentos</button>
+        <button role="tab" data-tab="restaurantes" aria-selected="false" style="--tc:var(--si)"><i></i>Restaurantes</button>
+        <button role="tab" data-tab="reservas" aria-selected="false" style="--tc:var(--alert)"><i></i>Reservas<span class="badge" id="badge" hidden></span></button>
+        <button role="tab" data-tab="sugestoes" aria-selected="false" style="--tc:var(--ve)"><i></i>Sugestões</button>
+        <span class="tabind" aria-hidden="true"></span>
+      </nav>
+      <button class="tabarrow r" id="tabR" aria-label="Próximas abas" hidden>›</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+
+<!-- PANORAMA -->
+<section class="panel" id="panorama" role="tabpanel">
+  <div class="hero">
+    <div class="skylayer" aria-hidden="true"><div class="dusk"></div><div class="night"></div><div class="stars" id="stars"></div></div>
+    <div class="in">
+      <div class="eyebrow">Roteiro de viagem a dois · 20 de janeiro a 03 de fevereiro de 2027</div>
+      <h1>Itália <em>2027</em></h1>
+      <p class="sub">Da Roma imperial aos canais de Veneza, passando pela Toscana e pelos Alpes</p>
+      <div class="cities" id="cities"></div>
+    </div>
+    <svg class="landscape" viewBox="0 0 960 180" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Coliseu, cúpula de Florença entre ciprestes e Dolomitas nevadas; na laguna, uma gôndola com um casal sentado e o gondoleiro remando, do dia até a noite">
+      <g id="sunG" transform="translate(640 46)"><circle class="sun" r="30" fill="var(--sun)" opacity=".9"/><circle id="sunRed" r="30" fill="#e2552f" opacity="0"/></g>
+      <g id="moonG" transform="translate(250 220)"><circle r="40" fill="#f6efd9" opacity=".12"/><circle r="19" fill="#f6efd9"/><circle cx="-6" cy="-4" r="3.5" fill="#ddd2b3"/><circle cx="5" cy="6" r="4.2" fill="#ddd2b3"/><circle cx="7" cy="-7" r="2" fill="#ddd2b3"/></g>
+      <g id="clouds"><g class="cloud" fill="#fff" opacity=".8"><ellipse cx="150" cy="40" rx="36" ry="9"/><ellipse cx="170" cy="33" rx="18" ry="9"/></g>
+      <g class="cloud c2" fill="#fff" opacity=".65"><ellipse cx="520" cy="26" rx="28" ry="7"/><ellipse cx="535" cy="20" rx="14" ry="7"/></g></g>
+      <g id="birds"></g>
+      <g id="terrain">
+      <polygon fill="var(--mtn1)" points="420,128 470,96 500,108 540,66 562,84 590,52 616,80 640,62 668,92 700,58 728,74 760,44 790,82 820,64 850,90 880,70 920,96 960,84 960,157 420,157"/>
+      <polygon fill="var(--snow)" points="540,66 562,84 554,80 548,86 542,76 534,74"/>
+      <polygon fill="var(--snow)" points="590,52 616,80 608,74 600,82 594,70 584,64"/>
+      <polygon fill="var(--snow)" points="700,58 712,66 706,70 698,66 692,68"/>
+      <polygon fill="var(--snow)" points="760,44 778,64 770,62 764,68 756,58 748,60"/>
+      <polygon fill="var(--snow)" points="820,64 832,74 826,74 818,72 812,74"/>
+      <polygon fill="var(--mtn2)" points="560,150 600,118 640,128 690,98 730,120 780,104 830,126 880,110 960,124 960,157 560,157"/>
+      <path fill="var(--hill1)" d="M0 150 L0 128 Q90 108 190 122 Q280 98 380 116 Q470 100 560 124 Q610 132 660 150 Z"/>
+      <path fill="var(--hill2)" d="M0 160 L0 146 Q120 128 240 142 Q340 126 440 140 Q520 132 600 150 L600 160 Z"/>
+      <g transform="translate(36,58)">
+        <path fill="var(--stone)" d="M0 92 V30 Q0 22 10 20 L120 6 Q150 4 150 16 L150 34 L134 40 L134 92 Z"/>
+        <path fill="var(--stone2)" d="M0 92 V30 Q0 22 10 20 L40 16 L40 92 Z" opacity=".55"/>
+        <g id="colArches" fill="var(--sky2)"><rect x="8" y="64" width="11" height="22" rx="5.5"/><rect x="26" y="64" width="11" height="22" rx="5.5"/><rect x="44" y="64" width="11" height="22" rx="5.5"/><rect x="62" y="64" width="11" height="22" rx="5.5"/><rect x="80" y="64" width="11" height="22" rx="5.5"/><rect x="98" y="64" width="11" height="22" rx="5.5"/><rect x="116" y="64" width="11" height="22" rx="5.5"/>
+          <rect x="8" y="38" width="11" height="18" rx="5.5"/><rect x="26" y="37" width="11" height="18" rx="5.5"/><rect x="44" y="36" width="11" height="18" rx="5.5"/><rect x="62" y="35" width="11" height="18" rx="5.5"/><rect x="80" y="34" width="11" height="18" rx="5.5"/><rect x="98" y="33" width="11" height="18" rx="5.5"/><rect x="116" y="32" width="11" height="18" rx="5.5"/>
+          <rect x="12" y="24" width="8" height="8" rx="2"/><rect x="40" y="20" width="8" height="8" rx="2"/><rect x="68" y="17" width="8" height="8" rx="2"/><rect x="96" y="13" width="8" height="8" rx="2"/><rect x="124" y="10" width="8" height="8" rx="2"/></g>
+      </g>
+      <g fill="var(--cypress)"><ellipse cx="214" cy="126" rx="5" ry="22"/><ellipse cx="226" cy="130" rx="4" ry="17"/><ellipse cx="422" cy="122" rx="5" ry="24"/><ellipse cx="434" cy="128" rx="4" ry="18"/><ellipse cx="510" cy="126" rx="4.5" ry="20"/></g>
+      <g transform="translate(286,62)">
+        <rect x="64" y="8" width="16" height="72" fill="var(--stone)"/><rect x="62" y="4" width="20" height="6" fill="var(--stone2)"/><rect x="68" y="20" width="8" height="12" rx="4" fill="var(--sky2)"/><rect x="68" y="42" width="8" height="12" rx="4" fill="var(--sky2)"/>
+        <rect x="0" y="54" width="62" height="26" fill="var(--stone)"/>
+        <rect x="8" y="40" width="46" height="16" fill="var(--stone)"/>
+        <path d="M8 41 Q8 4 31 2 Q54 4 54 41 Z" fill="var(--brick)"/>
+        <g stroke="#fff" stroke-width="1.2" opacity=".55" fill="none"><path d="M31 2 V41"/><path d="M19 8 Q15 24 15 41"/><path d="M43 8 Q47 24 47 41"/></g>
+        <rect x="27" y="-6" width="8" height="9" fill="#f3efe6"/><path d="M27 -6 L31 -14 L35 -6 Z" fill="var(--stone2)"/>
+      </g>
+      <rect x="0" y="156" width="960" height="24" fill="var(--water)"/>
+      <path class="shim" d="M40 166 h40 M180 170 h28 M330 165 h50 M520 171 h36 M700 166 h44 M860 170 h30" stroke="var(--water2)" stroke-width="2" stroke-linecap="round"/>
+      <path class="shim s2" d="M110 174 h30 M260 174 h40 M430 175 h28 M610 175 h46 M780 175 h32" stroke="var(--water2)" stroke-width="2" stroke-linecap="round"/>
+      <path d="M800 156 Q870 112 940 156" fill="none" stroke="var(--stone)" stroke-width="9"/>
+      <path d="M800 156 Q870 120 940 156" fill="none" stroke="var(--stone2)" stroke-width="2"/>
+      </g>
+      <defs><mask id="terrMask" maskUnits="userSpaceOnUse" x="0" y="0" width="960" height="180"><g id="terrMaskG"></g></mask>
+        <radialGradient id="glowG"><stop offset="0" stop-color="#ffd27a" stop-opacity=".9"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient></defs>
+      <rect id="nightTerr" x="0" y="0" width="960" height="180" fill="#0b1630" opacity="0" mask="url(#terrMask)"/>
+      <g id="lights" opacity="0">
+        <g transform="translate(36,58)" id="colLights" fill="#ffcf73"></g>
+        <rect x="354" y="82" width="8" height="12" rx="4" fill="#ffcf73"/><rect x="354" y="104" width="8" height="12" rx="4" fill="#ffcf73"/>
+        <circle cx="317" cy="58" r="12" fill="url(#glowG)"/><rect x="313" y="56" width="8" height="9" fill="#ffe3a3"/>
+        <path d="M800 158 Q870 124 940 158" fill="none" stroke="#ffcf73" stroke-width="1.2" stroke-dasharray="1 7" stroke-linecap="round"/>
+      </g>
+      <g id="gondola" transform="translate(470 163)"></g>
+    </svg>
+    <div class="stats">
+      <div class="c-ro"><div class="v mono" id="countdown">–</div><div class="k">dias até o embarque</div></div>
+      <div class="c-fi"><div class="v">15 dias</div><div class="k">de 20/01 a 03/02/2027</div></div>
+      <div class="c-bz"><div class="v">5 bases + Siena</div><div class="k">viagem em casal</div></div>
+      <div class="c-ve"><div class="v">Trem, ônibus e barco</div><div class="k">nos deslocamentos</div></div>
+    </div>
+  </div>
+
+  <h3 class="sec">A viagem em um olhar <small>toque num card para ver o que vamos fazer</small></h3>
+  <div class="phases" id="phases"></div>
+
+  <div class="arrive">
+    <div class="eyebrow">20/01 · Fiumicino (FCO)</div>
+    <h4>Chegada a Roma</h4>
+    <p>A maneira mais rápida é pegar o trem Leonardo Express, dentro do próprio aeroporto. Ele custa € 14, parte a cada 15 minutos e leva exatamente 32 minutos até a estação Roma Termini. Da Termini, o hotel <b>FH55 Grand Hotel Palatino</b>, na Via Cavour, fica a cerca de 10 minutos de caminhada.</p>
+    <p>Alternativamente, é possível pegar a linha B do metrô em Termini e descer na estação Cavour (1 parada, € 1,50).</p>
+  </div>
+
+  <h3 class="sec">Mapa dos trajetos <small>toque num trecho para destacar</small></h3>
+  <div class="mapcard">
+    <div class="mapwrap"><svg id="map" viewBox="0 0 560 673" role="img" aria-label="Mapa do centro e do norte da Itália com Roma, Florença, Siena, Bolzano, Verona e Veneza e os trajetos de trem, ônibus e barco"></svg></div>
+    <div class="legs" id="legs"></div>
+  </div>
+  <p class="hint">Mapa desenhado a partir das coordenadas reais das cidades. As linhas ligam as cidades em traço aproximado; “Rota no Google Maps” mostra o caminho de transporte público.</p>
+</section>
+
+<!-- ROTEIRO -->
+<section class="panel c-fi" id="roteiro" role="tabpanel" hidden>
+  <div class="panel-head"><h2>Dia a dia</h2><p>O roteiro completo, etapa por etapa, exatamente como planejado. Toque numa cidade para ver só aquela parte.</p></div>
+  <div class="route" id="route" role="group" aria-label="Filtrar por etapa"></div>
+  <div id="stages" style="display:grid;gap:28px"></div>
+</section>
+
+<!-- HOSPEDAGEM -->
+<section class="panel c-vr" id="hospedagem" role="tabpanel" hidden>
+  <div class="panel-head"><h2>Hospedagem</h2><p>Cinco hotéis, um em cada base. Siena é bate e volta a partir de Florença.</p></div>
+  <div class="nightbar" id="nightbar" aria-label="Noites em cada cidade"></div>
+  <div class="stays" id="stays"></div>
+</section>
+
+<!-- DESLOCAMENTOS -->
+<section class="panel c-bz" id="deslocamentos" role="tabpanel" hidden>
+  <div class="panel-head"><h2>Deslocamentos entre cidades</h2><p>Para conectar todas as bases, os trens são a melhor opção. Compre as passagens com antecedência (pelo menos 30 a 60 dias) nos sites da Trenitalia ou Italo Treno para garantir tarifas promocionais (Smart ou Super Economy).</p></div>
+  <p class="hint" style="max-width:90ch">Valores calculados para o casal (2 pessoas). Para Florença → Siena já está incluído o valor de ida e volta, pois será um bate e volta no mesmo dia. Para o transfer de saída em Veneza, foi considerado o barco Alilaguna (linha laranja), o melhor custo-benefício saindo de Rialto.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Trecho</th><th>Transporte</th><th>Tempo estimado</th><th class="cost">Custo (casal)</th></tr></thead>
+      <tbody id="legrows"></tbody>
+    </table>
+  </div>
+  <div class="note c-bz"><span class="eyebrow">Dica de logística</span><p>Nos trechos de trem de alta velocidade (como Roma a Florença, ou Florença a Bolzano), os trens partem rigorosamente no horário. O ideal é chegar à estação com cerca de 20 a 30 minutos de antecedência para olhar o painel eletrônico, descobrir a plataforma (que só é anunciada uns 15 minutos antes) e caminhar com calma até o vagão correto com as malas.</p></div>
+
+  <h3 class="sec">Transfer ao aeroporto <small>Veneza · 03/02 · toque numa opção para ver o total</small></h3>
+  <p style="max-width:85ch">Para sair do Riva del Vin Boutique Hotel rumo ao Aeroporto Marco Polo há excelentes opções, dependendo das malas e do orçamento, já que o hotel está ao lado da Ponte de Rialto.</p>
+  <div class="opts" id="opts"></div>
+
+  <div class="sumcard" aria-live="polite">
+    <span class="eyebrow">Total estimado com deslocamentos · casal</span>
+    <div class="big" id="tTotal">€ 264 a € 456</div>
+    <p id="tNote">Transportes entre cidades e aeroportos, com o Alilaguna no transfer de Veneza.</p>
+  </div>
+  <p style="max-width:85ch">A grande diferença de preço (quase € 200) depende de um único fator: <b>antecedência</b>. Para conseguir os valores da faixa mínima, é preciso comprar as passagens nos sites da Trenitalia ou Italo Treno com <b>60 a 90 dias de antecedência</b>, garantindo as tarifas Super Economy ou Smart. Comprando na semana da viagem ou na hora, paga-se a tarifa cheia (a faixa máxima ou até um pouco mais).</p>
+  <div class="note c-ve"><span class="eyebrow">Um detalhe sobre Veneza</span><p>Se para ir do hotel ao aeroporto vocês optarem pelo táxi aquático privativo (para maior conforto com as malas) em vez do Alilaguna, o custo desse trecho sobe de € 30 para cerca de € 130 o casal, alterando o total da viagem.</p></div>
+
+  <h3 class="sec">Onde comprar as passagens <small>os sites e aplicativos necessários para emitir todas as passagens da viagem</small></h3>
+  <p style="max-width:90ch"><b>1. Trens (alta velocidade e regionais).</b> Na Itália, duas empresas principais operam os trens. Nos trechos de alta velocidade (Roma → Florença, Florença → Bolzano, Bolzano → Verona e Verona → Veneza), elas são concorrentes diretas, então sempre compare o preço das duas antes de comprar.</p>
+  <div class="buy">
+    <div class="box c-ro"><span class="eyebrow">Empresa estatal</span><h4>Trenitalia</h4><dl><dt>Site</dt><dd><a href="https://www.trenitalia.com" target="_blank" rel="noopener">www.trenitalia.com</a></dd><dt>App</dt><dd>Trenitalia</dd></dl><p>Opera tanto os trens rápidos (Frecciarossa) quanto os mais lentos e baratos (Regionale). Também vende o transfer Leonardo Express (Aeroporto de Roma → Termini), embora o preço dele seja fixo (€ 14) e possa ser comprado nas máquinas na hora.</p></div>
+    <div class="box c-vr"><span class="eyebrow">Empresa privada</span><h4>Italo Treno</h4><dl><dt>Site</dt><dd><a href="https://www.italotreno.it" target="_blank" rel="noopener">www.italotreno.it</a></dd><dt>App</dt><dd>Italo Treno</dd></dl><p>Opera exclusivamente trens de alta velocidade, geralmente muito modernos e confortáveis. Costuma lançar códigos promocionais nos fins de semana.</p></div>
+  </div>
+  <div class="box c-si">
+    <span class="eyebrow">Dica de ouro para as buscas</span>
+    <p>Nos sites oficiais italianos, digite o nome das cidades em <b>italiano</b>, caso contrário o sistema pode não encontrar.</p>
+    <div class="names">
+      <div><span>Roma</span><b>Roma Termini</b></div>
+      <div><span>Florença</span><b>Firenze S. M. Novella (S.M.N.)</b></div>
+      <div><span>Bolzano</span><b>Bolzano (ou Bozen)</b></div>
+      <div><span>Verona</span><b>Verona Porta Nuova</b></div>
+      <div><span>Veneza</span><b>Venezia S. Lucia</b></div>
+    </div>
+  </div>
+  <div class="buy">
+    <div class="box c-si"><span class="eyebrow">2 · Ônibus Florença → Siena</span><h4>Autolinee Toscane</h4><dl><dt>App</dt><dd>at bus</dd></dl><p>Responsável pela linha 131R (Rapida), que liga Florença a Siena em 1h15. A passagem tem preço fixo e não esgota com meses de antecedência: dá para comprar pelo aplicativo já em Florença ou na bilheteria da rodoviária (colada à estação Santa Maria Novella) um dia antes.</p></div>
+    <div class="box c-ve"><span class="eyebrow">3 · Barco em Veneza</span><h4>Alilaguna</h4><dl><dt>Site</dt><dd><a href="https://www.alilaguna.it" target="_blank" rel="noopener">www.alilaguna.it</a></dd></dl><p>Bilhetes da Linea Arancio (Linha Laranja), que sai de Rialto para o Aeroporto Marco Polo. Compre online e troque pelo bilhete físico nas docas de Veneza, ou compre diretamente nos guichês da Alilaguna na hora de embarcar.</p></div>
+  </div>
+  <div class="box c-bz"><span class="eyebrow">A alternativa mais prática</span><h4>Trainline ou Omio</h4><p>Para não criar contas em vários sites italianos e fazer tudo em português, a recomendação é baixar o Trainline ou o Omio. Eles reúnem todas as opções (Trenitalia, Italo e ônibus) na mesma tela, mostram qual é a mais rápida ou a mais barata e guardam todos os QR Codes de embarque no aplicativo, funcionando offline. O único detalhe é a pequena taxa de serviço (cerca de € 1 a € 3 por transação), mas pela facilidade de organizar a viagem toda no mesmo lugar, vale muito a pena.</p></div>
+</section>
+
+<!-- RESTAURANTES -->
+<section class="panel c-si" id="restaurantes" role="tabpanel" hidden>
+  <div class="panel-head"><h2>Restaurantes</h2><p>Ter um almoço longo, sentado e relaxado é o verdadeiro estilo de vida italiano (o <i>pranzo</i>), e muitos restaurantes tradicionais oferecem menus executivos incríveis durante o dia. À noite, optar por algo rápido e casual (como pizzas, focaccias ou tábuas de frios) economiza tempo e dinheiro, além de permitir caminhadas noturnas mais leves.</p></div>
+  <div class="note c-si"><span class="eyebrow">Combinado</span><p>Os restaurantes para almoço e jantar serão escolhidos dia a dia, durante o percurso, de acordo com o horário apropriado, a localização em que estivermos e o preço adequado.</p></div>
+  <h3 class="sec">Onde o roteiro sugere comer <small>as regiões e ideias citadas em cada dia</small></h3>
+  <div class="pfilters" id="mealf" role="group" aria-label="Filtrar por cidade"></div>
+  <div class="meals" id="meals"></div>
+</section>
+
+<!-- RESERVAS -->
+<section class="panel c-al" id="reservas" role="tabpanel" hidden>
+  <div class="panel-head"><h2>Reservas e pendências</h2><p>Tudo o que o roteiro pede para comprar ou reservar antes. Marquem o que já foi resolvido: a lista é a mesma para os dois.</p></div>
+  <div class="syncline" id="sync"><i></i><span>Salvando só neste aparelho até conectar.</span></div>
+  <div class="progress" aria-hidden="true"><span id="prog" style="width:0"></span></div>
+  <div class="tasks" id="tasks"></div>
+  <div id="extraWrap" hidden><div class="grouph">Vindas da aba Sugestões</div><div class="tasks" id="tasksx"></div></div>
+</section>
+
+<!-- SUGESTÕES -->
+<section class="panel c-ve" id="sugestoes" role="tabpanel" hidden>
+  <div class="panel-head"><h2>Sugestões</h2><p>Ideias minhas, separadas do roteiro. Nada daqui muda o plano: leiam e decidam. Pesquisei em 24/10/2026 e cada card traz o link da fonte; preços e horários podem mudar até a viagem.</p></div>
+  <div class="sugintro"><b>Como usar</b><span>Em cada card, “Adicionar às reservas” coloca o item no fim da aba Reservas, com o mesmo checklist compartilhado. Toque de novo para tirar.</span></div>
+  <div class="pfilters" id="sugf" role="group" aria-label="Filtrar sugestões por cidade"></div>
+  <div class="sgrid" id="sgrid"></div>
+
+  <h3 class="sec">Temperatura esperada <small>médias de janeiro (normais 1991–2020), não previsão</small></h3>
+  <div class="weather" id="weather"></div>
+  <p class="hint">Fonte: Climi e Viaggi (dados 1991–2020), páginas de Roma, Florença, Bolzano, Verona e Veneza, consultadas em 24/10/2026. Siena costuma ficar perto de Florença, um pouco mais fria por estar no alto <span class="tbc">A CONFIRMAR</span>.</p>
+
+  <h3 class="sec">Pontos para conferir no roteiro <small>não mexi em nada, só anotei</small></h3>
+  <div class="box c-mu">
+    <ul class="checks">
+      <li>Os horários dos voos não estão no roteiro. O dia 20/01 parte de uma chegada às 07h00 em Roma e o dia 03/02 não traz o horário da volta. <span class="tbc">A CONFIRMAR</span></li>
+      <li>Em 25/01 o dia a dia diz “ônibus ou trem” para Siena, e a tabela de deslocamentos considera o ônibus Rapida 131R. O ônibus chega mais perto do centro de Siena; a estação de trem fica mais afastada, no pé da colina <span class="tbc">A CONFIRMAR</span>.</li>
+      <li>O dia 29/01 tem duas opções (Merano ou Ortisei). Vale decidir antes por causa do transporte: trem regional para Merano, ônibus para Ortisei.</li>
+      <li>A tabela classifica Bolzano → Verona como “regional ou rápido”, e o guia de compra cita esse trecho entre os de alta velocidade. As duas coisas existem; o rápido é mais caro.</li>
+    </ul>
+  </div>
+
+  <h3 class="sec">Fontes <small>consultadas em 24/10/2026</small></h3>
+  <ul class="sources" id="sources"></ul>
+</section>
+
+</div>
+</main>
+
+<script>
+(function(){
+  "use strict";
+  const $ = (s, r=document) => r.querySelector(s);
+  const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+  const store = {
+    get(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
+    set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+  };
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const TBC = '<span class="tbc">A CONFIRMAR</span>';
+  const eur = v => "€ " + Math.round(v).toLocaleString("pt-BR");
+  const gmap = q => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
+  const WD = ["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado"];
+  const MO = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+  let db = null, canWrite = true, doneMap = store.get("it-done", {}), sugOn = store.get("it-sug", {});
+
+  /* ================= Etapas ================= */
+  const ST = [
+    {k:"ro",n:"Roma",dates:"20 a 24/01",nn:4,hotel:"FH55 Grand Hotel Palatino",hl:"Via Cavour, bairro de Monti",title:"Roma eterna",eb:"Etapa 1 · 20/01 a 24/01",sub:"FH55 Grand Hotel Palatino · Bairro de Monti",
+      intro:"Chegada em 20/01 e partida na manhã de 24/01: 1 tarde e 3 dias inteiros de passeios. No fim de janeiro o sol se põe cedo em Roma (por volta das 17h15), então o roteiro aproveita a luz do dia nas atrações abertas e deixa os começos de noite para praças iluminadas, aperitivos e jantares a dois.",
+      acts:["Monti","Fontana di Trevi","Coliseu","Termas de Caracalla","Trastevere","Vaticano","Castel Sant'Angelo","Villa Borghese","Pantheon"],q:"FH55 Grand Hotel Palatino Via Cavour Roma"},
+    {k:"fi",n:"Florença",dates:"24 a 27/01",nn:3,hotel:"Globus Urban Hotel",hl:"",title:"Florença & Siena",eb:"Etapa 2 · 24/01 a 27/01",sub:"Globus Urban Hotel · Bate e volta a Siena em 25/01",intro:"",
+      acts:["Duomo","Ponte Vecchio","Piazzale Michelangelo","Uffizi ou Accademia","Cúpula de Brunelleschi","Boboli"],q:"Globus Urban Hotel Firenze"},
+    {k:"si",n:"Siena",dates:"25/01 · bate e volta",nn:0,hotel:"",hl:"Ônibus expresso Rapida 131R a partir de Florença",
+      acts:["Duomo de Siena","Piazza del Campo","Pici toscano"]},
+    {k:"bz",n:"Bolzano",dates:"27 a 30/01",nn:3,hotel:"Eisenhut Boutique Hotel",hl:"",title:"Bolzano alpina",eb:"Etapa 3 · 27/01 a 30/01",sub:"Eisenhut Boutique Hotel · Cerca de 8 minutos de caminhada",intro:"O clima vai mudar drasticamente para o charme alpino.",
+      acts:["Via dei Portici","Ötzi","Teleférico do Renon","Merano ou Ortisei"],q:"Eisenhut Boutique Hotel Bolzano"},
+    {k:"vr",n:"Verona",dates:"30/01 a 01/02",nn:2,hotel:"Hotel Mastino",hl:"Próximo à Piazza Bra",title:"Verona romântica",eb:"Etapa 4 · 30/01 a 01/02",sub:"Hotel Mastino · Muito próximo à Piazza Bra",intro:"",
+      acts:["Arena","Via Mazzini","Casa de Julieta","Castelvecchio","Giardino Giusti"],q:"Hotel Mastino Verona"},
+    {k:"ve",n:"Veneza",dates:"01 a 03/02",nn:2,hotel:"Riva del Vin Boutique Hotel",hl:"A passos da Ponte de Rialto",title:"Veneza sobre as águas",eb:"Etapa 5 · 01/02 a 03/02",sub:"Riva del Vin Boutique Hotel · A passos da Ponte de Rialto",intro:"",
+      acts:["Grande Canal","San Polo e Cannaregio","Praça São Marcos","Palácio Ducal","Gôndola"],q:"Riva del Vin Boutique Hotel Venezia"}
+  ];
+  const SK = Object.fromEntries(ST.map(s => [s.k, s]));
+
+  /* ================= Dias (transcritos do roteiro) ================= */
+  const D = [
+    {e:"ro",d:"2027-01-20",tag:"Dia 1",t:"Chegada, bairro Monti e o coração de Roma",lead:"Acomodação tranquila e um primeiro passeio pelos cartões-postais sem cansar muito.",s:[
+      ["07h00 – 09h30","Chegada e logística.","Desembarque, imigração e retirada das malas (conte de 1h a 1h30). Peguem o trem Leonardo Express ou um táxi do aeroporto até a região central."],
+      ["09h30 – 10h00","Chegada ao FH55 Grand Hotel Palatino.","O hotel fica no excelente bairro de Monti (super charmoso). Deixem as malas no guarda-volumes, já que o check-in é só às 14h."],
+      ["10h00 – 13h30","Explorando Monti e almoço de boas-vindas.","Caminhem pelas ruelas de paralelepípedos de Monti (Via del Boschetto, Via Urbana, Piazza della Madonna dei Monti, Via dei Serpenti, Basílica de Santa Maria Maggiore). Escolham uma trattoria autêntica no bairro para a primeira massa da viagem."],
+      ["14h00","Check-in e banho.","Voltem ao hotel para pegar a chave, tomar um banho quente e recarregar as energias após o voo noturno."],
+      ["15h30 – 17h30","Centro histórico.","Saiam em direção à Fontana di Trevi. O ideal é chegar ainda com a luz do fim de tarde e vê-la acender ao anoitecer. Depois, caminhem até a Piazza di Spagna para ver a famosa escadaria."],
+      ["Noite","","Jantar romântico nas ruelas ao redor da Piazza di Spagna ou voltem para aproveitar a vida boêmia e elegante de Monti, perto do hotel."]]},
+    {e:"ro",d:"2027-01-21",tag:"Dia 2",t:"O Império Romano (Coliseu + Termas) e Trastevere",s:[
+      ["08h30 – 12h30","Coliseu, Fórum Romano e Palatino.","Comecem o dia cedo nessas três atrações integradas. O Palatino termina muito próximo à área do Circo Máximo, que é o caminho natural para as Termas."],
+      ["12h30 – 14h00","Almoço estratégico.","Almocem nos arredores do Circo Máximo ou na região da Via Celio Vibenna. É o momento de descansar as pernas com um bom prato de massa e uma taça de vinho."],
+      ["14h00 – 15h30","Termas de Caracalla.","Caminhem (cerca de 15 a 20 minutos saindo da área do Coliseu/Palatino) até as Termas. Vocês vão se impressionar com o tamanho das paredes e dos mosaicos no chão daquele que foi um dos maiores complexos de banhos públicos da antiguidade. Um passeio muito romântico e menos frenético."],
+      ["15h30 – 17h00","Piazza Venezia e pôr do sol no Vittoriano.","Peguem um táxi rápido (cerca de 5 a 10 minutos) ou um ônibus até a Piazza Venezia. Subam no Altare della Patria (monumento Vittoriano) a tempo de pegar a vista panorâmica de Roma com as cores do entardecer (o sol se põe por volta das 17h15)."],
+      ["17h30 em diante","Trastevere.","Já no começo da noite, atravessem o rio Tibre rumo a Trastevere para curtir o clima boêmio, tomar um Aperol Spritz em um bar aquecido e ter um jantar maravilhoso a dois nas ruelas iluminadas."]],
+      tip:["Dica extra para as Termas","Eles oferecem a opção de alugar óculos de realidade virtual na entrada. Para quem gosta de história, vale muito a pena: mostra exatamente como eram os banhos, as piscinas e as colunas de mármore, sobrepondo a grandiosidade antiga às ruínas que vocês estarão vendo."]},
+    {e:"ro",d:"2027-01-22",tag:"Dia 3",t:"O Vaticano e o pôr do sol no rio Tibre",lead:"Arte, religião e castelos.",s:[
+      ["09h00 – 13h30","Museus Vaticanos e Capela Sistina.","<b>Ingressos antecipados são obrigatórios!</b> Excelente passeio para as manhãs mais frias, pois é em local fechado. Depois dos museus, visitem o interior da Basílica de São Pedro."],
+      ["13h30 – 15h00","Almoço em Prati.","O bairro ao redor do Vaticano tem opções maravilhosas e um pouco menos voltadas apenas para turistas."],
+      ["15h00 – 17h00","Castel Sant'Angelo.","Caminhem pela Via della Conciliazione, que rende fotos lindas com a Basílica ao fundo. Entrem no Castel Sant'Angelo e subam até o terraço no topo: a vista da cidade cortada pelo Tibre, com o Vaticano ao fundo na hora do pôr do sol, é de tirar o fôlego."],
+      ["Noite","","Atravessem a lindíssima Ponte Sant'Angelo (adornada com anjos) à noite e jantem nas proximidades da Piazza Navona, que fica mágica com suas fontes iluminadas."]]},
+    {e:"ro",d:"2027-01-23",tag:"Dia 4",t:"Villa Borghese, Piazza del Popolo e Pantheon",lead:"Parques, praças abertas e a cúpula mais famosa do mundo.",s:[
+      ["09h30 – 12h30","Villa Borghese e Galleria Borghese.","Comecem o dia no pulmão verde de Roma. Se gostam de arte, agendem a Galleria Borghese (uma das mais exclusivas do mundo; as reservas esgotam meses antes). Depois, caminhem pelo parque de mãos dadas, passando pelo lago (Laghetto di Villa Borghese)."],
+      ["12h30 – 13h30","Terrazza del Pincio e Piazza del Popolo.","Caminhem dentro da Villa Borghese até o Terrazza del Pincio, uma das vistas mais icônicas de Roma. Desçam a rampa até a imensa e simétrica Piazza del Popolo."],
+      ["13h30 – 15h00","","Almoço na região da Via del Corso ou nos arredores da praça."],
+      ["15h00 – 17h00","Pantheon e Campo de' Fiori.","Caminhem pelas ruelas do centro histórico até o Pantheon (o prédio antigo mais bem preservado do mundo; lembrem-se de reservar a entrada, que agora é paga). Pertinho dali, passem na praça Campo de' Fiori."],
+      ["Noite","","Para a última noite, um clássico aperitivo italiano (pede-se um drink e come-se petiscos à vontade) e um jantar de despedida especial no centro histórico."]]},
+    {e:"ro",d:"2027-01-24",tag:"Partida",t:"Rumo a Florença",s:[
+      ["Manhã","","Café da manhã no hotel. O FH55 Grand Palatino fica a menos de 10 minutos a pé (ou 5 de táxi) da estação Roma Termini."],
+      ["Embarque","","Cheguem à estação com uns 20 minutos de antecedência e embarquem no trem-bala (Trenitalia ou Italo) em direção à romântica Florença!"]]},
+    {e:"fi",d:"2027-01-24",tag:"Domingo",t:"Chegada e primeiro passeio",s:[
+      ["14h00","","Chegada e check-in no Hotel Globus."],
+      ["Tarde","","Caminhada leve pelo centro histórico. Vejam a fachada do Duomo de Florença (Santa Maria del Fiore), passeiem pela Piazza della Signoria e cruzem a Ponte Vecchio."],
+      ["Fim de tarde","","Subam até a Piazzale Michelangelo para o pôr do sol romântico com vista para a cidade."],
+      ["Noite","","Jantar aconchegante no Mercato Centrale ou em uma trattoria próxima ao hotel."]]},
+    {e:"fi",d:"2027-01-25",tag:"Segunda",t:"Bate e volta para Siena",si:true,s:[
+      ["Manhã","","Peguem o ônibus ou trem (a poucos passos do hotel) logo após o café da manhã."],
+      ["Dia","","Aproveitem Siena. O Duomo de Siena é um dos mais impressionantes da Itália (muitos acham o interior mais bonito que o de Florença). Almocem uma massa tradicional toscana, como o pici, e caminhem pela Piazza del Campo."],
+      ["Fim da tarde","","Retorno para Florença e noite livre."]]},
+    {e:"fi",d:"2027-01-26",tag:"Terça",t:"O Renascimento em Florença",s:[
+      ["Manhã","","Dia de focar na arte! Comecem pela Galleria degli Uffizi ou pela Galeria da Accademia (com ingressos comprados com antecedência)."],
+      ["Tarde","","Reservem este horário se quiserem subir na Cúpula de Brunelleschi ou no Campanário de Giotto. Depois, explorem a área do Palazzo Pitti e os Jardins de Boboli (se o frio permitir) ou façam compras nas lojinhas de couro ao redor da Piazza San Lorenzo."]]},
+    {e:"fi",d:"2027-01-27",tag:"Quarta",t:"Despedida",s:[
+      ["Manhã","","Café da manhã com calma, últimas comprinhas ou um autêntico espresso italiano no balcão de algum café próximo."],
+      ["10h00","Partida","da estação Santa Maria Novella."]]},
+    {e:"bz",d:"2027-01-27",tag:"Chegada",t:"Centro histórico de Bolzano (Bozen)",s:[
+      ["Tarde","","Explorem o centro histórico, passeiem pela Piazza Walther e sob as famosas arcadas medievais (Via dei Portici)."]]},
+    {e:"bz",d:"2027-01-28",tag:"Dia 2",t:"História e natureza",s:[
+      ["Manhã","","Visitem o Museu Arqueológico do Tirol do Sul para conhecer Ötzi, a múmia do gelo com mais de 5.000 anos."],
+      ["Tarde","","Peguem o Teleférico do Renon (Ritten) para ter vistas panorâmicas espetaculares das Dolomitas."]]},
+    {e:"bz",d:"2027-01-29",tag:"Dia 3",t:"Exploração",s:[
+      ["Opção 1","Merano.","Bate e volta de trem regional (cerca de 40 min) até esta elegante cidade termal."],
+      ["Opção 2","Ortisei, Val Gardena.","Ônibus até o vilarejo para ver a neve e os picos das montanhas bem de perto."]]},
+    {e:"bz",d:"2027-01-30",tag:"Partida",t:"Descendo as montanhas",s:[
+      ["Manhã","","Check-out e trem descendo as montanhas rumo a Verona."]]},
+    {e:"vr",d:"2027-01-30",tag:"Chegada",t:"Arena de Verona e Via Mazzini",s:[
+      ["Tarde","","O hotel fica muito próximo à Piazza Bra, onde está a imponente Arena de Verona. Após o check-in, visitem a Arena (um anfiteatro romano mais antigo que o Coliseu) e caminhem pela elegante Via Mazzini."]]},
+    {e:"vr",d:"2027-01-31",tag:"Dia 2",t:"Romance e castelos",s:[
+      ["Manhã","","Visitem a Casa de Julieta. Depois, explorem a belíssima Piazza delle Erbe e a Piazza dei Signori."],
+      ["Tarde","","Caminhem até o Castelvecchio (atravessem sua ponte fortificada de tijolos vermelhos) e, se houver tempo, visitem os belos Jardins Giusti (Giardino Giusti)."]]},
+    {e:"vr",d:"2027-02-01",tag:"Partida",t:"Rumo à lagoa",s:[
+      ["Manhã","","Check-out e trem curto para Veneza."]]},
+    {e:"ve",d:"2027-02-01",tag:"Chegada",t:"Grande Canal, San Polo e Cannaregio",s:[
+      ["Chegada","","Na estação Venezia Santa Lucia, peguem o vaporetto (ônibus aquático, Linha 1 ou 2) pelo Grande Canal até a parada de <b>Rialto</b>. O hotel fica a passos da Ponte de Rialto."],
+      ["Tarde","","Aproveitem para se perder nas ruelas dos bairros de San Polo e Cannaregio."]]},
+    {e:"ve",d:"2027-02-02",tag:"Dia 2",t:"O coração de Veneza",s:[
+      ["Manhã","","Acordem cedo e sigam direto para a Praça São Marcos. Visitem a Basílica de São Marcos (reservem antes) e o Palácio Ducal, cruzando a Ponte dos Suspiros."],
+      ["Tarde","","Passeio de gôndola ou travessia do canal até a Basílica de Santa Maria della Salute."]]},
+    {e:"ve",d:"2027-02-03",tag:"Partida",t:"Dia do retorno",transfer:true,s:[
+      ["Transfer","","Do hotel ao Aeroporto Marco Polo (VCE)."]]}
+  ];
+  const dparts = iso => { const [y,m,d] = iso.split("-").map(Number); const dt = new Date(Date.UTC(y,m-1,d)); return {d:String(d).padStart(2,"0"), m:MO[m-1], wd:WD[dt.getUTCDay()]}; };
+
+  /* ================= Panorama ================= */
+  $("#cities").innerHTML = ST.map(s => '<span class="c-'+s.k+'"><i></i>'+esc(s.n)+' <b>'+esc(s.dates.replace(" · bate e volta",""))+'</b></span>').join("");
+  (function(){
+    const t = Date.UTC(2027,0,20), now = new Date(), n = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+    const days = Math.round((t-n)/864e5);
+    $("#countdown").textContent = days > 0 ? days : (days===0 ? "hoje!" : "boa viagem");
+  })();
+  $("#phases").innerHTML = ST.map((s,i) => {
+    const num = s.k==="si" ? "✦" : String(ST.slice(0,i+1).filter(x => x.k!=="si").length);
+    const front = '<div class="face front"><span class="num">'+num+'</span><span class="d">'+esc(s.dates)+(s.nn?' · '+s.nn+' noites':'')+'</span><span class="n">'+esc(s.n)+'</span>'+
+      '<span class="hl">'+(s.hotel?esc(s.hotel)+(s.hl?' · '+esc(s.hl):''):esc(s.hl))+'</span>'+
+      '<div class="pact"><button class="pgo" data-gostage="'+(s.k==="si"?"fi":s.k)+'">Ver no roteiro →</button><button class="pflip" aria-label="Virar o card e ver o que vamos fazer">↻ O que vamos fazer</button></div></div>';
+    const back = '<div class="face back" aria-hidden="true"><span class="d">'+esc(s.dates)+'</span><span class="n">O que vamos fazer</span><ul class="acts">'+s.acts.map(a => '<li>'+esc(a)+'</li>').join("")+'</ul>'+
+      '<div class="pact"><button class="pgo" data-gostage="'+(s.k==="si"?"fi":s.k)+'" tabindex="-1">Ver no roteiro →</button><button class="pflip" tabindex="-1">↻ Voltar</button></div></div>';
+    return '<div class="phase c-'+s.k+'"><div class="pin">'+front+back+'</div></div>';
+  }).join("");
+  $("#phases").addEventListener("click", e => {
+    const go = e.target.closest("[data-gostage]");
+    if(go){ e.stopPropagation(); stageFilter = go.dataset.gostage; showTab("roteiro"); renderRoute(); renderStages(); return; }
+    const ph = e.target.closest(".phase"); if(!ph) return;
+    ph.classList.toggle("flipped");
+    const f = ph.classList.contains("flipped");
+    $(".front", ph).setAttribute("aria-hidden", String(f)); $(".back", ph).setAttribute("aria-hidden", String(!f));
+    $$(".front button", ph).forEach(b => b.tabIndex = f ? -1 : 0); $$(".back button", ph).forEach(b => b.tabIndex = f ? 0 : -1);
+  });
+
+  /* ================= Cena animada: dia e noite, gôndola ================= */
+  (function(){
+    const NS = "http://www.w3.org/2000/svg";
+    const hero = $(".hero"), sunG = $("#sunG"), sunRed = $("#sunRed"), moon = $("#moonG"), clouds = $("#clouds");
+    const dusk = $(".skylayer .dusk"), night = $(".skylayer .night"), stars = $("#stars");
+    const terr = $("#terrain"), nightTerr = $("#nightTerr"), lights = $("#lights"), gond = $("#gondola"), birds = $("#birds");
+    if(!hero || !gond) return;
+    // estrelas
+    let st = ""; for(let i=0;i<46;i++){ const x=(i*37.7)%100, y=(i*19.3)%46, sz=i%5===0?2.6:1.6; st += '<i style="left:'+x.toFixed(1)+'%;top:'+y.toFixed(1)+'%;width:'+sz+'px;height:'+sz+'px;animation-delay:-'+(i%7*0.6).toFixed(1)+'s"></i>'; }
+    stars.innerHTML = st;
+    // máscara do relevo para escurecer à noite
+    const mg = $("#terrMaskG"), clone = terr.cloneNode(true); clone.removeAttribute("id");
+    clone.querySelectorAll("*").forEach(e => { e.removeAttribute("id"); e.removeAttribute("class"); if(e.getAttribute("fill") && e.getAttribute("fill")!=="none") e.setAttribute("fill","#fff"); if(e.getAttribute("stroke")) e.setAttribute("stroke","#fff"); e.removeAttribute("opacity"); });
+    mg.appendChild(clone);
+    // janelas acesas do Coliseu
+    $("#colLights").innerHTML = $("#colArches").innerHTML;
+    // gôndola: casal (pele parda) sentado e gondoleiro em pé na popa, de frente para a proa (direita)
+    const HULL = "M-92,-20 Q-88,-6 -66,1 L60,1 Q82,-4 92,-22 L88,-23 Q78,-9 60,-7 L-64,-7 Q-82,-8 -88,-21 Z";
+    const SK = "#9c6640", SK2 = "#a36c46", HAIR = "#1c1410";
+    gond.innerHTML =
+      '<g id="gWake"><path d="M-96 2 q-14 3 -30 0 M-104 6 q-18 3 -42 0 M-92 9 q-10 2 -22 0" stroke="#c9e8ee" stroke-width="1.6" fill="none" stroke-linecap="round"/></g>'+
+      '<path d="'+HULL+'" transform="scale(1,-1)" fill="#0d2229" opacity=".22"/>'+
+      '<g id="gOar"><line x1="-58" y1="-50" x2="-12" y2="28" stroke="#6b4a2b" stroke-width="2.4" stroke-linecap="round"/><path d="M-17 18 l9 13 l-5 3 l-8 -12 z" fill="#6b4a2b"/></g>'+
+      '<path d="'+HULL+'" fill="#15130f"/>'+
+      '<path d="M-64,-7 L60,-7" stroke="#c9a54a" stroke-width="1.1"/>'+
+      '<path d="M89,-21 Q95,-30 92,-42 L97,-43 Q99,-34 94,-20 Z" fill="#dcd8cf"/><path d="M94,-37 h5 M94,-33 h5 M93,-29 h5" stroke="#dcd8cf" stroke-width="1.4"/>'+
+      '<path d="M-40,-7 l1.5,-9 l3,0 l-.8,3.5 l2.6,1 l-1,4.5 z" fill="#7a5532"/>'+
+      '<rect x="-16" y="-15" width="48" height="8" rx="2" fill="#a8362a"/><rect x="-16" y="-15" width="48" height="2" fill="#c9a54a"/>'+
+      '<g id="gLamp" opacity="0"><circle cx="78" cy="-30" r="14" fill="url(#glowG)"/></g><path d="M78,-12 V-27" stroke="#3a332a" stroke-width="1.2"/><rect x="75.5" y="-31" width="5" height="5" rx="1" fill="#e9c46a"/>'+
+      // homem: cabelo bem curto
+      '<g id="gMan">'+
+        '<path d="M4,-11 h13 q2 0 2 2 v3 h-15 z" fill="#3b3a40"/>'+
+        '<path d="M-8,-8 L-8,-26 Q-8,-32 -1,-32 L5,-32 Q11,-32 11,-26 L11,-8 Z" fill="#2b3b55"/>'+
+        '<rect x="1" y="-35.5" width="4.5" height="5" fill="'+SK+'"/>'+
+        '<g id="gManHead"><circle cx="3.5" cy="-40.5" r="6.6" fill="'+SK+'"/><path d="M9.6,-43 Q8.6,-48.4 3.4,-48.2 Q-2.9,-48 -3.6,-41.4 Q-3.7,-37.6 -2.2,-35.4 Q-1,-38.6 .6,-40.2 Q2.6,-42.4 5.4,-42.6 Q7.8,-42.8 9.6,-43 Z" fill="#1f1611"/><circle cx="1.6" cy="-40.5" r="1.5" fill="#8a5636"/><circle cx="8" cy="-41.5" r=".85" fill="#1d1b18"/><path d="M9.6,-40.5 l1.6,1.6 l-1.5,.4" fill="'+SK+'"/></g>'+
+        '<path d="M8,-28 Q17,-31 19,-21" stroke="#2b3b55" stroke-width="3.2" fill="none" stroke-linecap="round"/>'+
+      '</g>'+
+      // mulher: um pouco menor, cabelo liso e escuro
+      '<g id="gWom">'+
+        '<path d="M24,-11 h11 q2 0 2 2 v3 h-13 z" fill="#3b3a40"/>'+
+        '<g id="gWomHair"><path d="M15.6,-37 Q15,-44.5 22,-44.6 Q27.8,-44.6 27.9,-38 L15.2,-21.5 Q14.2,-21.5 14,-23 Z" fill="'+HAIR+'"/></g>'+
+        '<path d="M14,-8 L14,-23 Q14,-28 19,-28 L23,-28 Q28,-28 28,-23 L28,-8 Z" fill="#8d3a60"/>'+
+        '<rect x="17" y="-29.5" width="9.5" height="3.2" rx="1.6" fill="#e8c26a"/>'+
+        '<g id="gWomHead"><rect x="20" y="-32.5" width="4" height="4" fill="'+SK2+'"/><circle cx="22.5" cy="-37" r="5.7" fill="'+SK2+'"/>'+
+          '<path d="M16.8,-37.5 Q17,-43.6 22.8,-43.6 Q27.6,-43.4 28.2,-38.6 Q25,-40.8 21,-39.6 Q18.8,-38.2 17.8,-33 Z" fill="'+HAIR+'"/><path d="M16.4,-37 L15.6,-25 Q17.4,-25.5 18.2,-31 Z" fill="'+HAIR+'"/>'+
+          '<circle cx="26" cy="-37.6" r=".8" fill="#1d1b18"/><path d="M27.8,-36.6 l1.3,1.4 l-1.3,.3" fill="'+SK2+'"/></g>'+
+      '</g>'+
+      // gondoleiro
+      '<g id="gGon">'+
+        '<rect x="-67" y="-30" width="4.6" height="23" fill="#1d1b18"/><rect x="-61" y="-30" width="4.6" height="23" fill="#1d1b18"/>'+
+        '<rect x="-69" y="-52" width="15" height="23" rx="3" fill="#fff"/>'+
+        '<g fill="#1f3a66"><rect x="-69" y="-48" width="15" height="2.6"/><rect x="-69" y="-42.5" width="15" height="2.6"/><rect x="-69" y="-37" width="15" height="2.6"/></g>'+
+        '<rect x="-69" y="-31.5" width="15" height="2.4" fill="#b4432e"/>'+
+        '<rect x="-63.5" y="-55" width="4.5" height="4" fill="#d9a37a"/><circle cx="-61" cy="-58.5" r="6" fill="#d9a37a"/><circle cx="-57" cy="-59.5" r=".8" fill="#1d1b18"/>'+
+        '<rect x="-67" y="-69.5" width="12" height="6.5" rx="1" fill="#e3c66e"/><rect x="-67" y="-66" width="12" height="2.1" fill="#b4432e"/><ellipse cx="-61" cy="-63.2" rx="10.5" ry="1.9" fill="#d8b85a"/>'+
+        '<g id="gArms" stroke="#fff" stroke-width="3.2" stroke-linecap="round" fill="none"><path id="gArm1"/><path id="gArm2"/></g>'+
+        '<circle id="gH1" r="1.9" fill="#d9a37a"/><circle id="gH2" r="1.9" fill="#d9a37a"/>'+
+      '</g>';
+    const oar = $("#gOar"), gon = $("#gGon"), arm1 = $("#gArm1"), arm2 = $("#gArm2"), h1 = $("#gH1"), h2 = $("#gH2");
+    const manH = $("#gManHead"), womH = $("#gWomHead"), womHair = $("#gWomHair"), wake = $("#gWake"), lamp = $("#gLamp");
+    const PIV = [-37,-14], H0 = [-58,-50], B0 = [-12,28];
+    const rot = (p, a) => { const c=Math.cos(a), s=Math.sin(a), dx=p[0]-PIV[0], dy=p[1]-PIV[1]; return [PIV[0]+dx*c-dy*s, PIV[1]+dx*s+dy*c]; };
+    const along = (t, a) => rot([H0[0]+(B0[0]-H0[0])*t, H0[1]+(B0[1]-H0[1])*t], a);
+    // gaivotas
+    const GULLS = [{x0:-60,y:34,v:22,ph:0,s:1},{x0:-300,y:22,v:18,ph:1.4,s:.8},{x0:-520,y:46,v:25,ph:.7,s:.9}];
+    birds.innerHTML = GULLS.map((g,i) => '<path id="gull'+i+'" fill="none" stroke="#4a4f57" stroke-width="1.5" stroke-linecap="round"/>').join("");
+    const SPAN = 1360, GV = 17; // px por segundo
+    function scene(t){
+      const x = ((t*GV + 470 + 160) % SPAN) - 160;
+      const by = Math.sin(t*1.6)*1.2, br = Math.sin(t*1.25)*.7;
+      gond.setAttribute("transform", "translate("+x.toFixed(1)+" "+(164+by).toFixed(2)+") rotate("+br.toFixed(2)+") scale(1.3)");
+      const w = t*2.4, a = (Math.sin(w)*9) * Math.PI/180;
+      oar.setAttribute("transform", "rotate("+(a*180/Math.PI).toFixed(2)+" "+PIV[0]+" "+PIV[1]+")");
+      gon.setAttribute("transform", "rotate("+(Math.sin(w)*3).toFixed(2)+" -61 -7)");
+      // as mãos acompanham o remo; o ombro acompanha a inclinação do corpo (já no grupo)
+      const lean = -Math.sin(w)*3*Math.PI/180, inv = p => { const c=Math.cos(lean), s=Math.sin(lean), dx=p[0]+61, dy=p[1]+7; return [-61+dx*c-dy*s, -7+dx*s+dy*c]; };
+      const p1 = inv(along(.07, a)), p2 = inv(along(.2, a)), S = [-58,-49];
+      arm1.setAttribute("d", "M"+S[0]+","+S[1]+" Q"+((S[0]+p1[0])/2-1).toFixed(1)+","+((S[1]+p1[1])/2+4).toFixed(1)+" "+p1[0].toFixed(1)+","+p1[1].toFixed(1));
+      arm2.setAttribute("d", "M"+S[0]+","+(S[1]+2)+" Q"+((S[0]+p2[0])/2-2).toFixed(1)+","+((S[1]+p2[1])/2+5).toFixed(1)+" "+p2[0].toFixed(1)+","+p2[1].toFixed(1));
+      h1.setAttribute("cx", p1[0].toFixed(1)); h1.setAttribute("cy", p1[1].toFixed(1)); h2.setAttribute("cx", p2[0].toFixed(1)); h2.setAttribute("cy", p2[1].toFixed(1));
+      // casal: ela encosta a cabeça no ombro dele de vez em quando
+      const lean2 = Math.max(0, Math.sin(t*.45)); const tilt = -lean2*14;
+      womH.setAttribute("transform", "rotate("+tilt.toFixed(2)+" 22 -31)"); womHair.setAttribute("transform", "rotate("+(tilt*.6).toFixed(2)+" 22 -31)");
+      manH.setAttribute("transform", "rotate("+(lean2*6 + Math.sin(t*1.1)*1.5).toFixed(2)+" 3.5 -34)");
+      wake.setAttribute("opacity", (.45 + Math.sin(t*3)*.2).toFixed(2));
+      GULLS.forEach((g,i) => {
+        const gx = ((t*g.v + g.x0) % 1200 + 1200) % 1200 - 120, f = Math.sin(t*6 + g.ph)*4*g.s, gy = g.y + Math.sin(t*.8+g.ph)*3, s = 7*g.s;
+        $("#gull"+i).setAttribute("d", "M"+(gx-s).toFixed(1)+","+(gy+f*.3).toFixed(1)+" Q"+(gx-s/2).toFixed(1)+","+(gy-f).toFixed(1)+" "+gx.toFixed(1)+","+gy.toFixed(1)+" Q"+(gx+s/2).toFixed(1)+","+(gy-f).toFixed(1)+" "+(gx+s).toFixed(1)+","+(gy+f*.3).toFixed(1));
+      });
+    }
+    // ciclo de dia e noite, como na página dos EUA
+    const CYCLE = 150, START = 5;
+    const ss = (a, b, x) => { const t = Math.max(0, Math.min(1, (x - a)/(b - a))); return t*t*(3 - 2*t); };
+    const lerp = (a, b, t) => a + (b - a)*t;
+    function sky(p){
+      const n = ss(.38, .5, p) * (1 - ss(.86, .98, p));
+      const d = Math.max(ss(.32, .42, p) * (1 - ss(.44, .54, p)), ss(.84, .9, p) * (1 - ss(.92, 1, p)));
+      let sx, sy;
+      if(p < .38){ sx = lerp(620, 650, p/.38); sy = lerp(44, 58, p/.38); }
+      else if(p < .52){ const t = ss(.38, .52, p); sx = lerp(650, 672, t); sy = lerp(58, 150, t); }
+      else if(p < .86){ sx = 600; sy = 170; }
+      else { const t = ss(.86, 1, p); sx = lerp(600, 620, t); sy = lerp(150, 44, t); }
+      sunG.setAttribute("transform", "translate("+sx.toFixed(1)+" "+sy.toFixed(1)+")");
+      sunRed.setAttribute("opacity", (Math.max(ss(.3, .48, p) * (1 - ss(.5, .56, p)), (1 - ss(.9, 1, p)) * ss(.84, .88, p)) * .75).toFixed(3));
+      let mx = 250, my = 220;
+      if(p > .42 && p < .94){ const rise = ss(.42, .58, p), set = ss(.8, .94, p); mx = lerp(230, 330, ss(.42, .94, p)); my = lerp(220, 40, rise) + (220 - 40)*set; }
+      moon.setAttribute("transform", "translate("+mx.toFixed(1)+" "+my.toFixed(1)+")");
+      dusk.style.opacity = (d*.75).toFixed(3); night.style.opacity = (n*.94).toFixed(3); stars.style.opacity = (ss(.5, .62, p) * (1 - ss(.82, .9, p))).toFixed(3);
+      nightTerr.setAttribute("opacity", (n*.5 + d*.14).toFixed(3));
+      lights.setAttribute("opacity", ss(.44, .56, p) * (1 - ss(.84, .92, p)));
+      lamp.setAttribute("opacity", ss(.44, .56, p) * (1 - ss(.84, .92, p)));
+      gond.style.filter = "brightness("+(1 - n*.38 - d*.1).toFixed(3)+")";
+      birds.setAttribute("opacity", (1 - n).toFixed(3));
+      clouds.style.opacity = (1 - n*.75).toFixed(3);
+      hero.classList.toggle("is-night", n > .55);
+    }
+    if(matchMedia("(prefers-reduced-motion: reduce)").matches){ sky(.05); scene(0); return; }
+    let t0 = performance.now() - START*1000, raf = 0, visible = true;
+    function frame(ms){ raf = 0; const t = (ms - t0)/1000; sky((t % CYCLE)/CYCLE); scene(t); if(visible && !document.hidden) raf = requestAnimationFrame(frame); }
+    function start(){ if(!raf && visible && !document.hidden) raf = requestAnimationFrame(frame); }
+    if("IntersectionObserver" in window) new IntersectionObserver(es => { visible = es[0].isIntersecting; start(); }).observe(hero);
+    document.addEventListener("visibilitychange", start);
+    sky(START/CYCLE); scene(START); start();
+  })();
+
+  /* ================= Mapa ================= */
+  const MAP = {"c": {"CHE": "M175.9,-23.6 178.2,-22.2 183.6,-17.6 182.3,-9.7 176.1,3.1 172.9,13.4 172.5,21.3 173.1,25.0 174.2,25.0 180.1,25.5 183.1,25.5 192.6,27.7 200.2,30.8 201.6,34.1 202.6,38.1 211.7,43.6 222.0,47.2 225.5,46.0 238.3,33.2 243.3,35.3 246.3,42.1 246.2,45.8 242.6,59.5 242.0,66.8 245.1,71.7 245.4,75.4 244.5,78.9 239.4,79.2 232.5,77.3 226.7,71.4 222.3,72.1 218.5,73.7 216.5,79.2 214.8,85.9 215.3,89.6 218.1,92.5 220.2,98.6 221.7,106.5 222.9,110.1 221.6,111.7 218.0,112.8 215.0,111.7 209.7,102.3 207.3,98.7 203.1,98.1 195.8,100.4 184.6,105.6 180.1,105.6 176.2,104.5 172.6,100.1 169.6,91.4 168.6,86.0 166.4,86.2 159.3,84.6 155.9,86.8 155.9,95.6 155.2,106.6 151.6,113.7 141.6,126.0 137.9,131.3 136.4,135.2 136.1,138.5 137.7,144.3 139.7,149.9 138.0,153.0 132.7,154.6 129.0,151.3 127.5,145.3 119.4,137.2 123.1,130.3 122.5,128.6 109.1,125.1 103.3,119.9 95.2,110.9 93.7,107.0 94.1,94.4 93.6,91.3 92.5,89.8 88.6,89.9 83.1,94.3 78.1,100.9 67.8,108.2 66.7,109.8 70.2,117.0 70.0,119.8 61.6,131.3 60.0,135.1 49.4,142.3 44.5,145.0 29.7,139.7 25.6,139.1 19.0,142.6 9.7,146.0 -5.4,149.3 -10.9,146.9 -13.5,144.6 -14.8,141.1 -18.6,135.0 -22.9,131.3 -25.9,127.4 -29.8,123.0 -32.4,119.4 -29.0,107.8 -31.5,103.7 -32.7,97.9 -32.1,94.0 -33.4,93.0 -47.1,90.8 -58.4,91.5 -66.5,95.3 -73.1,101.8 -73.8,103.2 -73.4,104.3 -70.2,110.2 -75.7,116.5 -84.3,121.3 -90.3,121.8 -93.0,120.9 -93.1,114.2 -88.1,111.7 -83.6,107.4 -82.0,101.2 -81.5,96.9 -86.3,91.7 -85.7,88.5 -82.7,82.5 -81.0,77.1 -78.6,72.5 -69.2,64.9 -59.8,57.3 -58.3,49.2 -57.6,39.4 -56.3,37.0 -43.5,31.1 -40.3,28.8 -38.7,25.4 -28.7,14.4 -18.8,3.5 -16.8,-0.2 -15.1,-2.4 -15.1,-4.2 -16.3,-5.5 -21.1,-6.4 -22.7,-9.9 -17.5,-16.1 -11.1,-19.9 -4.8,-20.0 -2.3,-18.2 -2.5,-16.2 0.2,-14.0 5.0,-13.2 10.8,-14.0 16.7,-16.3 20.2,-21.8 22.3,-26.0 31.5,-30.8 37.7,-28.4 55.0,-27.8 67.6,-29.1 75.5,-32.3 85.3,-32.3 91.9,-30.5 93.1,-30.7 94.9,-31.2 96.7,-32.9 102.9,-34.1 103.7,-35.5 103.5,-37.0 102.3,-37.8 94.7,-37.0 91.8,-38.2 91.1,-40.8 93.5,-45.4 99.1,-49.1 103.9,-50.0 107.3,-49.0 115.7,-42.1 117.7,-41.9 118.8,-43.1 120.6,-43.8 123.4,-42.5 126.7,-38.2 127.2,-37.5 145.9,-39.0 150.1,-39.0 162.7,-31.4 175.9,-23.6Z", "SVN": "M705.0,84.2 698.3,81.6 690.3,80.5 688.7,81.9 685.5,83.3 683.9,85.9 685.1,95.8 683.2,97.5 674.0,96.6 671.0,97.7 666.0,104.6 660.9,107.6 654.4,109.6 649.6,112.1 643.6,114.3 638.4,115.6 636.4,118.7 635.1,122.0 635.4,125.3 640.7,131.7 641.4,138.5 640.8,146.8 639.6,151.3 637.6,154.2 624.6,158.1 611.2,164.9 610.9,166.5 617.0,172.5 617.3,174.1 612.2,177.5 611.7,181.0 612.3,185.0 615.0,189.1 616.0,192.8 608.6,195.5 598.6,194.5 586.8,189.4 582.7,190.1 578.7,192.8 574.6,191.7 570.1,188.5 563.7,181.8 560.7,177.8 559.4,173.4 557.6,172.8 555.0,174.1 552.8,179.3 546.9,188.8 542.6,191.3 536.0,190.8 526.8,190.9 521.1,191.7 514.0,188.4 512.3,189.0 512.3,191.2 509.7,194.6 505.4,196.9 485.5,191.8 482.7,187.6 487.1,185.6 493.4,180.1 497.6,180.7 502.8,179.6 505.1,177.3 501.8,170.4 493.5,161.9 489.1,158.6 483.1,156.5 482.0,154.2 485.4,140.8 484.4,138.9 477.5,139.5 475.8,138.1 475.3,135.8 475.7,132.6 480.4,127.4 485.6,122.8 487.0,120.2 486.8,118.1 480.1,116.1 476.1,114.0 473.0,113.2 470.8,114.4 469.2,113.1 467.5,109.2 469.2,103.4 475.1,97.9 481.5,93.1 487.1,89.6 490.4,88.1 491.9,82.0 495.2,82.7 501.8,83.0 509.2,84.4 516.1,86.0 522.1,88.2 534.8,90.4 546.4,91.7 549.9,93.0 552.7,92.9 556.2,94.7 558.3,93.3 559.8,90.9 566.1,88.0 571.9,84.3 575.9,79.5 578.2,75.7 582.2,73.0 586.4,72.2 590.3,70.9 606.7,69.1 623.5,70.5 631.5,67.9 638.1,63.3 647.8,62.0 648.3,61.9 662.7,65.5 663.8,63.4 664.5,62.5 664.2,52.5 668.8,47.9 673.0,45.9 687.4,46.6 689.3,49.7 690.0,54.4 691.3,60.8 693.7,62.6 695.0,65.1 694.8,69.6 697.6,72.9 704.2,81.8 705.0,84.2Z", "SMR": "M400.0,357.5 395.5,358.3 393.3,354.0 396.6,349.0 401.4,348.2 402.2,352.1 400.0,357.5Z", "LIE": "M180.1,25.5 174.2,25.0 173.1,25.0 172.5,21.3 172.9,13.4 176.1,3.1 176.8,4.8 177.2,6.9 177.9,9.2 178.3,12.0 179.5,14.9 181.7,17.7 182.4,20.3 181.3,23.6 180.1,25.5Z", "ITA": "M-13.5,144.6 -10.9,146.9 -5.4,149.3 9.7,146.0 19.0,142.6 25.6,139.1 29.7,139.7 44.5,145.0 49.4,142.3 60.0,135.1 61.6,131.3 70.0,119.8 70.2,117.0 66.7,109.8 67.8,108.2 78.1,100.9 83.1,94.3 88.6,89.9 92.5,89.8 93.6,91.3 94.1,94.4 93.7,107.0 95.2,110.9 103.3,119.9 109.1,125.1 122.5,128.6 123.1,130.3 119.4,137.2 127.5,145.3 129.0,151.3 132.7,154.6 138.0,153.0 139.7,149.9 137.7,144.3 136.1,138.5 136.4,135.2 137.9,131.3 141.6,126.0 151.6,113.7 155.2,106.6 155.9,95.6 155.9,86.8 159.3,84.6 166.4,86.2 168.6,86.0 169.6,91.4 172.6,100.1 176.2,104.5 180.1,105.6 184.6,105.6 195.8,100.4 203.1,98.1 207.3,98.7 209.7,102.3 215.0,111.7 218.0,112.8 221.6,111.7 222.9,110.1 221.7,106.5 220.2,98.6 218.1,92.5 215.3,89.6 214.8,85.9 216.5,79.2 218.5,73.7 222.3,72.1 226.7,71.4 232.5,77.3 239.4,79.2 244.5,78.9 245.4,75.4 245.1,71.7 242.0,66.8 242.6,59.5 246.2,45.8 248.2,46.8 255.8,47.0 264.1,47.7 269.4,53.3 274.6,55.2 282.1,55.8 287.1,55.0 289.5,52.9 292.4,46.4 297.7,38.3 306.1,34.1 320.4,33.3 327.5,31.8 334.9,31.9 340.5,33.2 346.3,33.0 360.9,27.4 376.1,22.9 378.2,23.7 378.5,25.2 375.8,28.6 373.1,33.2 374.9,38.4 383.5,48.8 388.2,56.8 392.6,62.8 399.5,66.0 408.5,67.9 416.2,68.6 424.2,70.9 451.7,76.5 465.5,78.1 476.0,78.3 491.9,82.0 490.4,88.1 487.1,89.6 481.5,93.1 475.1,97.9 469.2,103.4 467.5,109.2 469.2,113.1 470.8,114.4 473.0,113.2 476.1,114.0 480.1,116.1 486.8,118.1 487.0,120.2 485.6,122.8 480.4,127.4 475.7,132.6 475.3,135.8 475.8,138.1 477.5,139.5 484.4,138.9 485.4,140.8 482.0,154.2 483.1,156.5 489.1,158.6 493.5,161.9 501.8,170.4 505.1,177.3 502.8,179.6 497.6,180.7 493.4,180.1 498.2,176.0 486.5,160.9 481.2,160.9 474.1,167.3 454.5,160.8 450.8,163.4 448.0,168.5 441.2,174.9 431.6,177.7 420.8,184.7 409.5,189.7 400.9,193.4 395.9,192.7 403.8,184.6 400.5,184.5 390.0,190.2 384.0,195.0 382.1,203.2 380.3,216.6 384.9,220.1 392.9,237.8 402.9,245.3 400.9,252.5 398.3,258.2 392.3,263.2 387.4,259.5 384.3,259.6 382.0,271.2 386.3,302.0 393.2,323.6 400.1,333.0 415.5,347.7 431.9,355.5 461.3,380.2 477.4,388.0 481.6,392.3 491.4,411.3 499.8,433.4 508.9,468.0 515.4,485.0 528.4,504.3 555.5,531.9 580.1,552.0 603.0,564.5 620.9,566.7 663.2,563.9 670.6,565.1 678.4,568.5 680.3,577.1 677.4,583.0 668.5,589.0 659.4,597.5 658.4,608.9 666.9,617.0 707.7,638.4 749.4,656.2 762.4,665.4 777.5,679.5 813.9,699.0 820.0,708.5 842.1,729.0 852.2,744.7 854.1,756.9 849.3,769.4 847.1,778.1 843.3,786.8 833.9,783.5 823.2,774.6 807.1,738.5 777.7,734.8 771.6,732.2 761.1,726.0 760.5,721.9 757.9,716.8 755.2,715.1 744.0,714.0 736.2,719.8 727.0,733.6 716.6,753.5 706.1,782.7 705.4,794.5 711.2,806.0 728.3,812.3 741.6,822.5 750.3,833.1 750.9,858.8 754.8,873.4 749.1,881.7 737.9,879.5 723.1,884.8 712.6,894.2 708.2,903.2 709.4,926.5 707.2,935.3 687.3,952.1 676.9,969.3 674.3,976.4 670.2,984.5 645.1,984.8 639.1,974.8 638.9,959.9 643.3,950.8 652.5,946.5 658.7,927.5 656.8,913.8 660.4,907.7 663.9,903.4 670.9,900.9 680.8,898.5 681.8,879.4 674.1,870.7 671.4,858.5 667.7,836.0 654.9,807.3 648.1,781.6 642.7,769.0 634.6,762.4 619.9,762.5 612.6,760.6 586.6,742.8 584.7,740.1 584.9,735.4 589.2,728.3 586.3,718.6 583.2,709.5 578.1,701.7 572.5,697.7 560.8,700.1 556.7,702.1 549.4,701.4 543.6,704.9 540.3,705.0 549.4,691.3 547.0,688.1 538.0,682.5 525.7,681.6 522.3,681.0 520.3,684.4 517.9,682.5 518.2,676.4 504.0,649.1 494.4,638.0 489.6,636.0 480.9,638.3 466.3,633.5 457.6,632.4 452.8,633.6 445.6,637.1 442.0,634.8 440.8,631.1 427.5,619.8 411.0,613.4 378.8,577.3 368.9,563.8 348.6,548.9 335.8,527.3 325.3,519.4 310.0,513.0 306.5,513.8 301.9,516.2 298.3,516.6 295.4,513.7 298.3,510.8 301.5,509.5 300.3,501.3 282.9,479.9 272.7,473.0 269.8,468.7 267.7,462.9 265.5,459.1 260.7,456.9 256.6,457.2 250.9,455.8 251.0,445.5 252.2,437.6 251.3,430.9 245.8,413.3 236.1,398.4 230.5,362.7 226.1,352.7 215.5,345.1 191.5,336.5 158.1,313.6 151.0,313.2 130.9,304.3 118.5,302.7 102.3,310.8 82.7,332.8 66.7,355.7 60.9,360.1 40.4,367.9 22.2,371.7 22.0,365.8 21.3,361.4 24.4,356.5 29.5,350.8 34.2,343.6 36.1,338.4 35.2,335.0 33.1,329.8 30.2,329.5 12.9,333.8 9.0,332.6 -3.8,325.9 -17.6,317.7 -22.7,311.8 -24.6,305.9 -23.2,302.1 -24.3,298.4 -27.0,293.4 -24.6,287.8 -20.3,280.7 -18.1,275.9 -14.5,274.7 -12.8,271.8 -15.7,260.1 -17.2,258.3 -19.7,256.8 -23.5,256.7 -30.2,254.3 -34.9,250.2 -36.0,244.8 -38.5,239.6 -42.8,234.8 -43.3,229.6 -38.4,226.8 -31.8,226.7 -27.1,227.7 -16.6,219.3 -12.7,218.5 -9.2,216.7 -6.3,205.2 -4.1,201.8 -3.5,199.8 -5.6,197.4 -14.1,189.3 -18.0,180.9 -24.1,171.4 -29.8,167.3 -31.0,164.0 -31.1,159.9 -29.9,156.3 -19.6,150.6 -13.5,144.6ZM241.8,467.3 244.3,471.4 244.6,473.8 242.9,476.5 243.6,482.5 237.3,477.5 227.7,480.0 221.8,479.5 220.2,475.0 221.5,472.3 230.7,471.7 233.5,470.5 239.1,471.1 241.8,467.3ZM509.9,693.7 506.5,694.6 504.6,693.4 503.5,691.8 504.8,687.8 511.7,690.2 511.6,692.4 509.9,693.7ZM184.0,675.2 187.8,681.9 196.3,709.5 197.2,715.4 195.5,721.5 193.3,725.9 184.9,739.7 186.1,751.2 189.2,758.3 189.7,766.2 188.1,775.9 182.9,835.9 180.4,846.5 178.8,855.7 173.0,858.5 165.6,855.5 156.2,850.4 151.9,850.7 147.5,852.5 143.9,850.9 140.5,848.0 137.9,868.6 133.7,877.0 127.2,882.3 121.2,882.7 114.9,880.9 109.6,880.9 105.6,876.9 102.4,870.0 97.3,861.5 92.2,851.5 91.6,842.5 90.7,822.5 92.2,818.1 94.4,814.0 95.4,805.0 94.7,797.3 96.2,794.5 99.2,797.3 101.4,796.2 101.3,792.2 102.0,784.9 98.1,778.8 91.4,776.7 90.8,770.3 91.5,764.0 95.0,759.8 96.2,754.2 96.2,737.2 91.5,730.9 89.7,721.4 87.3,715.3 82.9,709.2 78.0,704.2 74.9,699.4 74.2,686.9 76.0,676.4 77.5,671.9 79.1,672.6 84.0,677.8 88.0,678.9 96.0,680.2 103.8,678.5 113.4,673.8 122.7,668.0 136.1,651.2 144.3,647.7 148.6,643.3 150.0,637.3 153.5,635.7 157.6,641.6 162.8,642.2 170.7,647.0 174.1,651.6 177.0,657.1 179.8,659.6 182.8,661.0 183.2,662.3 180.8,663.6 178.1,669.9 179.7,671.7 184.0,675.2ZM82.2,658.6 79.7,663.4 76.1,663.0 77.5,659.5 80.8,652.3 84.8,649.9 86.6,652.1 84.7,656.2 82.2,658.6Z", "DEU": "M175.9,-23.6 162.7,-31.4 150.1,-39.0 145.9,-39.0 127.2,-37.5 126.7,-38.2 123.4,-42.5 120.6,-43.8 118.8,-43.1 117.7,-41.9 115.7,-42.1 107.3,-49.0 103.9,-50.0 99.1,-49.1 93.5,-45.4 91.1,-40.8 91.8,-38.2 94.7,-37.0 102.3,-37.8 103.5,-37.0 103.7,-35.5 102.9,-34.1 96.7,-32.9 94.9,-31.2 93.1,-30.7 91.9,-30.5 85.3,-32.3 75.5,-32.3 67.6,-29.1 55.0,-27.8 37.7,-28.4 31.5,-30.8 27.7,-32.2 24.9,-39.3 25.6,-49.8 29.8,-63.7 30.9,-73.9 29.1,-80.4 31.5,-90.1 38.3,-103.1 42.8,-116.8 45.0,-131.2 48.3,-140.6 54.7,-147.1 69.9,-165.5 71.2,-166.9 70.7,-176.1 66.6,-177.4 60.6,-180.0 45.3,-183.3 31.1,-185.3 24.6,-187.9 19.0,-194.9 15.5,-194.9 8.6,-192.5 -0.0,-190.8 -6.3,-192.3 -10.2,-192.0 -12.4,-190.7 -13.5,-191.8 -15.0,-197.8 -18.3,-199.3 -23.4,-200.7 -26.5,-200.1 -28.7,-197.1 -32.1,-195.1 -35.2,-195.7 -44.8,-209.4 -47.3,-212.5 -48.0,-215.3 -50.4,-220.4 -56.1,-225.4 -61.9,-227.0 -64.8,-226.5 -64.4,-232.8 -62.2,-241.9 -60.0,-246.7 -57.2,-250.6 -54.1,-253.3 -53.4,-258.2 -53.9,-262.8 -57.4,-263.6 -66.2,-267.0 -71.4,-270.6 -75.3,-275.1 -80.4,-281.3 -82.5,-287.7 -82.6,-294.0 -82.0,-296.8 -81.6,-298.7 -77.6,-308.5 -63.2,-317.3 -64.8,-326.2 -65.0,-331.6 -68.5,-335.1 -75.4,-336.6 -77.3,-339.0 -78.1,-341.4 -73.0,-346.8 -79.1,-351.1 -81.8,-355.5 -90.4,-361.1 -91.3,-363.0 -87.1,-379.2 -90.3,-384.0 -94.2,-386.4 -98.8,-387.6 -100.9,-389.8 -101.6,-392.4 -100.8,-394.0 -95.4,-393.5 -93.8,-395.2 -81.0,-404.8 -80.4,-406.6 -82.2,-407.6 -84.6,-408.2 -85.1,-410.2 -85.1,-412.8 -78.2,-426.6 -76.2,-432.4 -75.8,-436.6 -76.2,-440.7 -80.1,-447.1 -83.9,-452.3 -84.0,-456.3 -86.8,-458.5 -94.7,-469.5 -94.7,-473.7 -90.2,-477.0 -84.0,-479.1 -81.9,-480.8 -78.2,-481.9 -68.3,-478.7 -63.9,-476.0 -62.6,-476.6 -58.6,-479.6 -51.6,-479.1 -34.7,-485.1 -32.1,-488.0 -30.2,-491.0 -30.1,-492.4 -36.7,-498.3 -36.9,-500.4 -36.0,-502.9 -34.1,-504.8 -30.2,-506.1 -26.1,-508.7 -16.9,-516.1 -13.6,-522.4 -12.7,-529.3 -12.5,-534.4 -15.0,-538.5 -17.5,-541.2 -21.0,-540.8 -27.8,-541.0 -34.1,-543.3 -37.6,-547.0 -38.5,-550.2 -36.9,-552.3 -36.4,-554.8 -37.4,-557.3 -37.0,-559.4 -34.2,-561.2 -14.1,-561.1 -12.6,-563.0 -11.3,-572.8 -6.3,-587.8 -1.6,-596.1 -0.8,-599.6 -0.8,-619.3 -0.2,-629.3 -3.6,-634.0 -11.1,-639.2 -9.5,-649.9 -7.0,-658.2 0.5,-668.5 6.5,-671.3 32.5,-673.0 61.2,-672.3 73.2,-656.8 68.8,-648.8 75.7,-645.1 79.1,-646.5 81.7,-653.4 83.4,-661.1 85.8,-663.4 94.7,-657.7 97.8,-653.8 98.0,-641.1 101.3,-658.2 98.9,-670.2 100.5,-681.8 104.1,-687.9 107.4,-691.7 128.5,-687.6 151.8,-689.7 160.6,-685.2 180.5,-662.8 187.2,-659.2 195.5,-658.0 184.0,-662.8 159.8,-690.0 152.6,-693.4 141.5,-694.4 134.6,-697.1 130.2,-701.2 128.9,-704.9 129.2,-732.3 125.0,-736.4 119.6,-737.8 116.2,-735.9 109.3,-735.9 107.9,-742.1 109.6,-746.7 123.4,-749.8 132.6,-754.0 133.0,-761.5 127.2,-767.3 120.3,-778.1 112.2,-788.2 111.3,-799.9 111.3,-799.9 125.4,-799.7 128.9,-799.2 150.3,-793.7 155.5,-789.9 162.1,-789.7 174.0,-793.3 182.8,-794.8 186.3,-792.6 191.1,-791.7 192.2,-791.7 192.7,-789.8 203.7,-787.0 208.4,-782.5 213.6,-775.7 214.1,-766.0 207.5,-759.0 202.0,-754.6 222.7,-756.2 224.8,-752.2 228.0,-747.9 239.2,-751.0 267.3,-738.1 284.2,-744.4 288.6,-744.7 292.4,-734.4 288.2,-723.9 273.2,-712.8 276.6,-705.9 281.3,-704.4 295.5,-705.8 317.8,-699.0 322.5,-701.1 340.6,-716.8 347.8,-720.2 371.7,-722.6 376.0,-728.6 385.7,-734.7 391.9,-741.4 406.8,-754.0 422.2,-751.7 431.2,-749.3 441.1,-748.1 450.1,-734.6 472.8,-719.7 493.7,-721.0 501.1,-706.9 504.4,-689.4 510.8,-684.0 516.5,-680.4 533.5,-676.6 534.2,-676.4 534.7,-674.0 535.8,-665.4 537.2,-658.2 546.0,-629.5 545.8,-622.5 545.7,-620.6 542.5,-610.8 536.8,-602.5 529.2,-597.8 525.1,-592.6 524.3,-586.8 533.8,-576.8 553.5,-562.4 561.5,-550.0 557.7,-539.8 556.6,-532.3 558.0,-527.5 561.2,-523.7 566.0,-520.7 568.0,-516.3 567.0,-510.2 567.9,-506.0 571.5,-503.1 571.2,-501.9 569.4,-497.7 567.0,-490.0 565.7,-484.4 560.1,-476.8 561.8,-470.3 566.2,-462.7 569.5,-458.9 570.5,-455.2 568.4,-446.6 569.4,-444.4 583.2,-438.0 585.4,-435.0 586.7,-428.9 591.5,-415.8 587.5,-399.3 584.0,-390.2 576.2,-375.7 575.8,-374.4 574.9,-372.7 572.6,-370.1 569.3,-369.8 564.4,-371.6 561.0,-374.1 561.8,-380.3 559.6,-380.7 556.9,-384.5 555.9,-388.6 553.0,-390.3 542.4,-392.0 538.8,-393.2 536.0,-392.3 534.0,-389.4 535.3,-386.8 537.3,-384.3 543.1,-380.2 542.5,-378.6 529.9,-374.6 521.9,-370.6 514.5,-368.3 506.9,-364.1 492.0,-359.4 481.1,-358.2 478.8,-356.9 474.7,-348.9 471.9,-347.3 469.3,-348.1 467.3,-349.5 464.7,-348.4 462.1,-345.7 459.3,-344.7 456.9,-344.7 452.6,-337.7 440.2,-335.6 438.7,-332.0 436.4,-327.8 434.6,-326.8 428.9,-328.5 421.2,-329.4 416.7,-327.1 411.3,-325.8 404.8,-325.4 397.5,-320.8 390.4,-312.8 386.4,-305.7 384.2,-303.1 380.7,-309.8 376.5,-314.4 373.4,-316.8 370.8,-316.8 370.0,-315.8 370.0,-312.3 372.9,-306.5 376.5,-302.5 377.1,-299.6 379.0,-294.3 384.2,-288.5 392.3,-283.9 397.9,-279.4 402.0,-273.1 402.0,-271.2 400.9,-268.6 399.0,-266.2 397.3,-263.0 392.8,-256.7 394.1,-253.9 397.8,-250.4 401.1,-246.1 405.3,-239.3 411.1,-227.4 414.8,-222.4 419.8,-217.4 424.8,-213.5 432.6,-213.6 440.7,-206.2 449.6,-195.5 456.2,-190.6 460.8,-189.1 464.6,-185.2 468.0,-179.7 469.3,-176.5 472.3,-174.2 480.4,-174.6 490.8,-165.9 497.2,-159.5 500.6,-154.3 499.7,-152.3 499.3,-145.9 499.4,-139.0 498.4,-135.4 493.7,-130.7 491.3,-129.7 490.0,-128.7 475.7,-134.9 474.6,-133.8 473.7,-133.0 469.9,-115.1 467.3,-111.7 463.4,-108.5 455.2,-105.4 449.5,-104.1 445.1,-102.6 431.2,-95.1 424.9,-90.6 420.8,-84.9 420.8,-81.6 427.6,-72.0 435.4,-62.1 435.5,-53.4 432.0,-46.9 431.2,-44.4 433.5,-43.4 437.8,-43.1 441.5,-41.9 443.0,-37.4 442.5,-29.4 441.3,-21.9 440.0,-18.7 436.5,-18.5 429.8,-21.7 424.5,-25.5 422.5,-27.8 422.4,-30.6 423.5,-32.3 421.6,-35.7 415.1,-38.9 408.2,-37.5 403.1,-35.4 399.8,-35.5 396.2,-38.5 390.7,-40.8 383.6,-42.4 379.1,-44.0 378.1,-43.0 378.7,-36.5 377.3,-33.6 341.8,-29.8 331.0,-26.3 323.1,-21.7 317.3,-19.7 315.9,-16.9 310.1,-13.1 303.6,-12.0 302.0,-13.2 297.9,-11.5 290.7,-9.8 286.1,-10.3 283.9,-13.3 279.5,-17.9 277.8,-21.1 278.0,-23.2 268.0,-23.6 261.7,-26.0 248.4,-25.4 245.1,-26.5 244.5,-25.4 242.5,-12.3 239.8,-7.0 235.6,-1.4 230.1,1.7 225.7,2.2 225.9,-1.8 227.0,-6.7 223.9,-7.8 219.2,-8.4 216.9,-9.8 217.5,-13.5 216.4,-15.7 214.5,-18.3 209.7,-21.6 199.7,-26.5 192.9,-29.0 190.3,-26.4 185.4,-23.8 177.8,-24.6 175.9,-23.6Z", "FRA": "M172.6,472.8 170.6,488.3 172.0,492.8 174.8,496.0 176.0,499.4 178.3,540.6 177.9,543.9 168.6,560.5 166.6,565.3 166.1,585.8 164.5,591.4 161.3,596.8 155.4,614.4 150.3,622.3 136.4,612.6 128.3,608.5 124.3,604.0 121.7,600.9 123.3,596.7 127.1,592.4 127.7,589.1 118.9,585.2 114.9,582.7 114.9,578.2 118.0,571.2 116.6,565.4 111.5,565.7 107.6,564.9 107.1,561.9 110.0,558.0 113.7,553.0 113.6,547.5 109.1,545.1 105.0,540.6 103.4,534.6 106.5,530.4 111.7,527.7 107.9,521.4 105.4,521.3 103.3,519.9 105.0,517.0 109.0,512.7 114.5,499.7 122.2,493.6 135.8,489.7 139.5,488.0 142.9,483.4 146.7,480.5 151.2,480.9 155.4,482.6 158.0,484.5 159.9,482.5 161.8,476.9 160.7,471.9 161.3,458.3 163.7,450.5 167.6,450.1 171.3,454.4 171.1,458.1 172.4,467.0 172.6,472.8ZM31.5,-30.8 22.3,-26.0 20.2,-21.8 16.7,-16.3 10.8,-14.0 5.0,-13.2 0.2,-14.0 -2.5,-16.2 -2.3,-18.2 -4.8,-20.0 -11.1,-19.9 -17.5,-16.1 -22.7,-9.9 -21.1,-6.4 -16.3,-5.5 -15.1,-4.2 -15.1,-2.4 -16.8,-0.2 -18.8,3.5 -28.7,14.4 -38.7,25.4 -40.3,28.8 -43.5,31.1 -56.3,37.0 -57.6,39.4 -58.3,49.2 -59.8,57.3 -69.2,64.9 -78.6,72.5 -81.0,77.1 -82.7,82.5 -85.7,88.5 -86.3,91.7 -81.5,96.9 -82.0,101.2 -83.6,107.4 -88.1,111.7 -93.1,114.2 -93.0,120.9 -90.3,121.8 -84.3,121.3 -75.7,116.5 -70.2,110.2 -73.4,104.3 -73.8,103.2 -73.1,101.8 -66.5,95.3 -58.4,91.5 -47.1,90.8 -33.4,93.0 -32.1,94.0 -32.7,97.9 -31.5,103.7 -29.0,107.8 -32.4,119.4 -29.8,123.0 -25.9,127.4 -22.9,131.3 -18.6,135.0 -14.8,141.1 -13.5,144.6 -19.6,150.6 -29.9,156.3 -31.1,159.9 -31.0,164.0 -29.8,167.3 -24.1,171.4 -18.0,180.9 -14.1,189.3 -5.6,197.4 -3.5,199.8 -4.1,201.8 -6.3,205.2 -9.2,216.7 -12.7,218.5 -16.6,219.3 -27.1,227.7 -31.8,226.7 -38.4,226.8 -43.3,229.6 -42.8,234.8 -38.5,239.6 -36.0,244.8 -34.9,250.2 -30.2,254.3 -23.5,256.7 -19.7,256.8 -17.2,258.3 -15.7,260.1 -12.8,271.8 -14.5,274.7 -18.1,275.9 -20.3,280.7 -24.6,287.8 -27.0,293.4 -24.3,298.4 -23.2,302.1 -24.6,305.9 -22.7,311.8 -17.6,317.7 -3.8,325.9 9.0,332.6 12.9,333.8 30.2,329.5 33.1,329.8 35.2,335.0 36.1,338.4 34.2,343.6 29.5,350.8 24.4,356.5 21.3,361.4 22.0,365.8 22.2,371.7 18.1,373.4 17.9,372.3 16.2,371.3 14.8,371.9 13.6,373.1 13.5,375.4 4.7,379.1 -1.4,383.0 -25.4,406.3 -36.6,413.1 -38.8,417.2 -41.1,424.8 -47.7,431.4 -53.4,434.6 -67.7,437.8 -82.0,444.8 -88.5,441.7 -105.2,442.1 -115.7,433.7 -135.7,428.3 -142.3,416.1 -151.4,415.3 -157.4,415.7 -161.0,413.8 -161.9,409.6 -162.0,405.6 -168.3,407.5 -173.2,407.5 -176.0,409.1 -178.3,410.9 -181.0,409.7 -182.6,410.1 -182.4,412.5 -188.3,413.1 -194.6,411.6 -211.2,405.3 -213.7,404.4 -225.2,401.9 -229.8,399.4 -233.6,393.1 -236.5,391.2 -238.2,390.0 -248.9,393.1 -252.6,398.0 -258.5,403.8 -298.2,432.0 -305.5,443.9 -313.9,461.3 -314.6,469.4 -311.0,495.4 -302.9,509.1 -301.8,512.2 -306.3,512.2 -313.9,510.5 -320.1,508.4 -326.1,509.6 -331.8,512.4 -336.8,514.1 -340.4,514.6 -342.8,516.2 -344.0,519.5 -344.2,521.7 -350.5,521.2 -365.2,516.5 -378.3,513.3 -386.1,517.0 -391.0,520.4 -394.5,519.9 -397.2,516.2 -399.0,512.7 -404.1,509.5 -415.8,504.6 -415.2,502.3 -413.2,499.0 -413.2,497.0 -415.5,494.0 -426.2,490.8 -431.2,490.0 -434.5,492.2 -436.8,494.9 -442.7,484.9 -447.0,482.9 -453.4,482.5 -460.8,479.5 -468.4,475.6 -487.0,469.4 -492.1,468.7 -494.2,469.6 -495.5,473.4 -496.3,483.9 -497.1,485.0 -505.7,485.4 -516.3,483.9 -521.2,484.6 -525.5,484.7 -529.6,481.9 -548.0,485.1 -551.0,483.5 -555.5,478.8 -560.4,475.0 -564.2,473.0 -567.5,470.7 -570.5,470.4 -575.0,472.6 -581.3,473.5 -586.5,473.2 -589.2,473.5 -600.9,461.9 -602.6,458.7 -608.4,457.8 -615.5,457.7 -633.8,450.1 -642.1,446.1 -643.4,443.7 -643.2,441.7 -644.7,442.2 -647.2,445.6 -648.6,448.4 -650.4,448.9 -653.0,448.5 -655.4,446.9 -656.9,444.9 -655.3,441.3 -652.5,436.7 -651.4,431.6 -651.6,427.1 -656.2,424.2 -663.0,423.0 -668.0,422.7 -674.5,420.1 -677.5,418.2 -680.5,413.2 -680.6,409.5 -668.3,406.3 -657.2,393.1 -646.7,345.0 -639.1,288.3 -633.5,277.5 -626.4,274.6 -632.1,266.8 -635.7,270.7 -637.2,274.9 -639.1,277.0 -634.8,225.0 -631.8,205.9 -626.7,186.0 -616.1,193.9 -607.4,201.9 -602.9,208.9 -597.2,232.1 -592.8,237.0 -586.4,241.9 -588.9,236.6 -593.4,232.5 -600.3,201.5 -604.7,192.7 -611.5,185.3 -633.4,169.8 -635.4,166.8 -636.4,160.9 -629.2,161.1 -622.9,164.0 -623.7,160.7 -625.5,157.2 -628.4,144.6 -630.9,115.2 -630.5,110.2 -631.6,104.0 -638.6,102.6 -644.2,102.4 -650.2,99.9 -680.1,82.6 -690.3,64.7 -700.7,51.5 -703.2,45.8 -703.0,39.9 -697.6,27.6 -702.4,19.8 -707.1,18.3 -711.1,14.4 -707.5,8.0 -704.4,3.9 -698.3,2.8 -690.3,4.1 -682.7,7.9 -676.7,8.8 -694.4,-1.1 -722.9,2.2 -729.1,1.0 -734.3,-1.3 -736.3,-8.6 -732.3,-11.9 -728.6,-18.0 -732.7,-22.3 -738.1,-23.9 -746.6,-23.8 -754.5,-22.5 -756.5,-25.0 -751.7,-31.8 -755.8,-34.2 -761.2,-33.1 -769.2,-31.7 -776.8,-33.8 -783.9,-41.5 -788.7,-41.5 -791.9,-40.5 -796.8,-43.5 -801.9,-44.2 -805.5,-43.2 -810.3,-47.7 -840.1,-56.6 -852.9,-57.6 -864.7,-53.6 -871.2,-55.0 -876.0,-60.7 -880.0,-70.4 -898.9,-77.8 -895.2,-82.7 -886.3,-83.8 -876.2,-87.2 -872.5,-91.5 -880.5,-96.6 -886.3,-97.8 -888.8,-99.6 -891.2,-104.2 -887.7,-106.2 -885.2,-105.1 -878.1,-104.5 -865.8,-105.6 -870.4,-110.2 -875.1,-111.2 -877.3,-112.3 -887.3,-112.8 -891.8,-111.3 -902.0,-111.8 -904.2,-116.8 -905.3,-121.0 -902.1,-130.4 -887.8,-138.9 -852.0,-148.1 -836.6,-146.7 -826.0,-148.4 -813.2,-154.2 -807.6,-159.2 -789.4,-162.1 -772.1,-156.8 -756.2,-136.9 -748.6,-130.1 -730.0,-141.8 -702.2,-141.5 -696.5,-134.9 -694.2,-140.5 -689.1,-147.0 -685.0,-144.0 -683.0,-140.0 -653.7,-141.1 -649.0,-142.3 -656.9,-147.0 -663.3,-158.4 -664.7,-200.1 -672.8,-211.8 -682.1,-230.4 -686.4,-241.4 -686.8,-245.3 -685.4,-250.8 -673.9,-250.5 -665.1,-249.1 -648.2,-253.2 -640.1,-250.4 -640.6,-241.8 -638.1,-230.9 -635.3,-225.6 -631.0,-219.6 -617.4,-220.2 -602.8,-216.7 -584.3,-216.1 -557.2,-210.1 -545.7,-213.6 -534.6,-221.1 -513.3,-226.0 -511.6,-228.6 -523.9,-227.6 -535.1,-232.3 -536.6,-237.5 -535.3,-242.1 -530.7,-252.8 -498.2,-269.6 -474.9,-274.6 -450.6,-283.9 -438.4,-293.4 -430.3,-305.6 -427.7,-308.3 -424.3,-310.6 -427.4,-315.0 -425.3,-361.8 -423.1,-370.3 -418.3,-377.1 -411.1,-382.5 -400.1,-388.3 -359.8,-396.2 -353.8,-399.5 -352.9,-394.5 -350.0,-388.0 -348.0,-384.5 -349.7,-380.0 -348.4,-376.2 -342.9,-369.4 -336.0,-363.0 -330.0,-358.9 -328.3,-359.4 -323.7,-360.5 -316.1,-364.7 -309.8,-366.0 -306.1,-362.8 -304.1,-361.0 -300.1,-353.8 -298.9,-346.2 -297.2,-340.0 -293.9,-337.4 -281.7,-336.6 -272.8,-334.3 -270.4,-332.2 -267.3,-318.2 -265.7,-316.2 -263.4,-317.9 -261.2,-320.2 -258.2,-320.5 -252.9,-319.7 -246.0,-319.4 -238.8,-317.8 -228.9,-310.0 -229.3,-307.4 -231.3,-302.8 -231.9,-299.2 -230.2,-297.7 -227.6,-293.9 -228.2,-289.6 -230.8,-286.6 -231.8,-284.0 -231.8,-282.4 -230.9,-281.1 -228.8,-279.9 -214.3,-278.3 -200.9,-279.9 -192.5,-284.3 -191.1,-289.0 -188.7,-294.3 -183.7,-298.7 -180.2,-300.2 -177.0,-298.3 -182.4,-279.8 -178.5,-275.0 -177.9,-268.0 -176.5,-261.8 -171.7,-261.9 -166.0,-260.7 -161.9,-258.4 -157.1,-254.7 -150.2,-251.4 -145.4,-250.2 -143.6,-247.3 -139.7,-244.0 -133.6,-237.2 -128.1,-232.6 -125.4,-232.6 -120.3,-234.4 -112.7,-235.6 -106.7,-235.5 -104.2,-232.0 -98.3,-230.4 -96.2,-229.1 -93.9,-226.7 -89.9,-225.7 -85.2,-226.7 -81.7,-229.9 -77.1,-231.3 -72.5,-230.8 -69.8,-229.1 -64.8,-226.5 -61.9,-227.0 -56.1,-225.4 -50.4,-220.4 -48.0,-215.3 -47.3,-212.5 -44.8,-209.4 -35.2,-195.7 -32.1,-195.1 -28.7,-197.1 -26.5,-200.1 -23.4,-200.7 -18.3,-199.3 -15.0,-197.8 -13.5,-191.8 -12.4,-190.7 -10.2,-192.0 -6.3,-192.3 -0.0,-190.8 8.6,-192.5 15.5,-194.9 19.0,-194.9 24.6,-187.9 31.1,-185.3 45.3,-183.3 60.6,-180.0 66.6,-177.4 70.7,-176.1 71.2,-166.9 69.9,-165.5 54.7,-147.1 48.3,-140.6 45.0,-131.2 42.8,-116.8 38.3,-103.1 31.5,-90.1 29.1,-80.4 30.9,-73.9 29.8,-63.7 25.6,-49.8 24.9,-39.3 27.7,-32.2 31.5,-30.8Z", "HRV": "M482.7,187.6 485.5,191.8 505.4,196.9 509.7,194.6 512.3,191.2 512.3,189.0 514.0,188.4 521.1,191.7 526.8,190.9 536.0,190.8 542.6,191.3 546.9,188.8 552.8,179.3 555.0,174.1 557.6,172.8 559.4,173.4 560.7,177.8 563.7,181.8 570.1,188.5 574.6,191.7 578.7,192.8 582.7,190.1 586.8,189.4 598.6,194.5 608.6,195.5 616.0,192.8 615.0,189.1 612.3,185.0 611.7,181.0 612.2,177.5 617.3,174.1 617.0,172.5 610.9,166.5 611.2,164.9 624.6,158.1 637.6,154.2 639.6,151.3 640.8,146.8 641.4,138.5 640.7,131.7 635.4,125.3 635.1,122.0 636.4,118.7 638.4,115.6 643.6,114.3 649.6,112.1 654.4,109.6 660.9,107.6 666.0,104.6 671.0,97.7 674.0,96.6 683.2,97.5 685.1,95.8 683.9,85.9 685.5,83.3 688.7,81.9 690.3,80.5 698.3,81.6 705.0,84.2 709.1,85.7 722.6,93.0 731.9,101.1 737.1,110.1 744.1,117.1 752.9,122.0 759.9,128.7 765.1,137.2 772.4,141.9 781.7,142.9 787.6,145.8 790.0,150.6 795.1,154.9 802.7,158.8 814.6,160.9 837.3,161.4 839.3,161.5 844.4,162.7 850.4,161.2 857.7,158.2 860.0,156.4 867.7,146.5 871.9,147.3 880.3,146.1 885.4,143.9 885.8,143.9 885.5,146.5 884.9,150.9 880.8,154.0 885.0,161.3 889.0,173.0 886.8,178.8 889.5,183.3 897.1,186.5 897.8,187.8 895.5,189.1 893.5,193.0 893.3,199.9 900.0,206.5 913.6,212.7 918.0,213.8 919.6,216.1 921.9,217.7 923.2,219.6 923.3,222.1 922.3,223.8 915.9,224.4 908.6,224.3 903.3,221.3 902.9,223.5 902.8,226.0 897.7,227.5 900.5,244.7 899.4,249.7 897.6,251.3 895.8,250.6 893.7,250.4 892.6,252.1 893.5,255.7 888.5,256.1 880.6,254.2 877.0,250.9 876.3,247.5 876.3,244.4 873.8,239.2 867.4,233.8 854.2,232.9 849.4,231.2 844.4,229.3 838.9,227.8 833.8,228.0 827.7,229.4 817.0,227.0 813.4,230.2 807.8,233.8 803.1,233.7 793.8,225.3 791.1,224.8 783.0,229.1 779.7,229.3 777.1,227.9 766.1,224.7 761.2,224.0 757.6,225.5 751.1,223.9 735.5,212.9 725.8,221.3 706.1,219.2 700.3,224.9 693.6,235.8 688.1,241.0 683.4,239.2 677.9,234.4 668.1,222.0 663.2,219.8 657.5,219.3 652.5,220.6 649.9,223.1 647.9,241.2 646.1,257.1 646.0,266.6 656.9,275.4 669.7,290.6 673.8,292.4 675.8,297.3 678.8,310.1 682.2,324.5 688.7,334.1 694.5,340.9 701.7,346.9 710.6,356.3 718.0,366.6 719.9,370.4 734.2,384.1 748.0,398.0 760.4,402.9 762.3,405.5 762.5,416.2 763.8,420.2 772.1,431.4 788.9,447.9 790.8,451.7 791.4,454.5 790.3,456.6 785.9,458.8 782.3,456.3 766.6,440.3 751.4,430.2 734.3,411.1 711.4,403.5 695.8,395.2 686.3,396.5 675.9,399.1 669.4,399.2 664.9,397.7 661.6,392.5 662.1,388.5 661.5,383.3 652.4,374.9 639.9,367.0 628.1,356.8 604.3,329.1 599.6,320.2 604.2,318.5 607.8,318.6 611.8,316.8 618.2,316.7 625.9,318.6 619.1,312.6 610.7,306.8 588.9,283.7 582.3,272.8 581.6,261.1 583.2,245.0 579.3,233.4 562.4,218.5 556.3,210.6 543.8,206.0 538.3,206.4 534.9,212.2 532.5,225.2 521.5,242.2 517.8,249.6 512.0,259.3 507.0,259.9 504.1,259.1 495.1,242.9 486.5,230.6 485.3,224.8 484.6,217.6 478.1,191.3 482.7,187.6ZM607.8,340.6 608.9,344.3 599.5,337.3 595.9,332.7 595.3,330.6 607.8,340.6ZM575.9,244.4 566.6,246.6 562.1,242.6 561.0,239.3 553.3,238.2 548.7,233.6 547.7,231.6 554.3,226.5 557.8,218.3 562.3,223.2 567.7,232.5 570.5,235.1 575.9,244.4ZM577.5,267.3 579.4,272.0 572.3,267.8 565.9,266.2 564.6,263.0 565.5,260.4 566.9,257.9 571.7,258.3 572.4,260.8 577.5,267.3ZM604.5,311.8 602.6,314.6 597.7,309.5 593.2,305.8 590.0,301.5 583.7,296.1 581.5,289.9 572.1,277.2 570.7,273.8 575.4,278.9 579.3,282.1 582.6,282.9 590.8,291.0 598.8,301.3 608.4,310.3 606.4,310.6 604.5,311.8ZM604.6,355.3 605.6,356.9 605.5,357.9 601.6,356.4 600.6,356.9 582.0,334.0 580.1,329.5 586.7,334.8 604.6,355.3ZM551.5,277.7 550.9,281.8 546.3,276.6 544.0,267.4 538.2,252.4 537.5,248.2 540.5,244.1 540.3,239.9 536.2,226.7 539.7,224.6 541.7,224.3 542.5,233.4 544.4,238.7 550.0,245.1 548.8,255.7 550.0,270.9 551.1,274.2 551.5,277.7Z", "AUT": "M176.1,3.1 182.3,-9.7 183.6,-17.6 178.2,-22.2 175.9,-23.6 177.8,-24.6 185.4,-23.8 190.3,-26.4 192.9,-29.0 199.7,-26.5 209.7,-21.6 214.5,-18.3 216.4,-15.7 217.5,-13.5 216.9,-9.8 219.2,-8.4 223.9,-7.8 227.0,-6.7 225.9,-1.8 225.7,2.2 230.1,1.7 235.6,-1.4 239.8,-7.0 242.5,-12.3 244.5,-25.4 245.1,-26.5 248.4,-25.4 261.7,-26.0 268.0,-23.6 278.0,-23.2 277.8,-21.1 279.5,-17.9 283.9,-13.3 286.1,-10.3 290.7,-9.8 297.9,-11.5 302.0,-13.2 303.6,-12.0 310.1,-13.1 315.9,-16.9 317.3,-19.7 323.1,-21.7 331.0,-26.3 341.8,-29.8 377.3,-33.6 378.7,-36.5 378.1,-43.0 379.1,-44.0 383.6,-42.4 390.7,-40.8 396.2,-38.5 399.8,-35.5 403.1,-35.4 408.2,-37.5 415.1,-38.9 421.6,-35.7 423.5,-32.3 422.4,-30.6 422.5,-27.8 424.5,-25.5 429.8,-21.7 436.5,-18.5 440.0,-18.7 441.3,-21.9 442.5,-29.4 443.0,-37.4 441.5,-41.9 437.8,-43.1 433.5,-43.4 431.2,-44.4 432.0,-46.9 435.5,-53.4 435.4,-62.1 427.6,-72.0 420.8,-81.6 420.8,-84.9 424.9,-90.6 431.2,-95.1 445.1,-102.6 449.5,-104.1 455.2,-105.4 463.4,-108.5 467.3,-111.7 469.9,-115.1 473.7,-133.0 474.6,-133.8 475.7,-134.9 490.0,-128.7 491.3,-129.7 493.7,-130.7 498.4,-135.4 499.4,-139.0 499.3,-145.9 499.7,-152.3 500.6,-154.3 502.7,-153.6 508.9,-150.2 513.7,-146.5 518.3,-137.0 529.0,-134.5 542.4,-134.3 547.2,-138.5 551.6,-139.4 556.5,-138.2 566.9,-136.7 568.1,-144.3 574.1,-152.3 576.8,-155.1 584.4,-154.8 586.3,-160.7 588.2,-177.2 589.8,-179.0 595.3,-178.6 600.8,-175.6 602.5,-173.2 605.4,-173.4 609.4,-175.0 613.8,-176.1 620.8,-174.4 635.6,-166.9 643.3,-164.2 648.2,-164.7 652.7,-164.6 670.3,-153.0 682.5,-151.4 693.7,-151.4 697.3,-154.9 702.1,-157.8 707.1,-157.4 711.4,-155.9 719.9,-150.9 723.8,-149.6 729.0,-148.8 732.8,-147.7 736.2,-139.0 738.1,-136.6 737.7,-135.6 737.3,-131.6 734.4,-126.6 731.2,-120.1 731.4,-114.3 739.6,-94.5 746.8,-82.4 748.1,-77.8 752.8,-74.3 748.4,-69.8 747.5,-63.2 744.6,-60.3 743.9,-56.5 745.1,-53.1 745.1,-48.8 746.7,-42.9 739.6,-41.6 731.2,-41.8 728.2,-41.4 725.4,-39.8 722.5,-40.6 714.9,-46.2 710.7,-47.4 707.6,-47.1 705.4,-44.7 701.5,-41.6 697.8,-39.4 698.6,-37.5 714.4,-32.5 717.1,-24.8 714.1,-18.6 713.1,-15.5 709.4,-13.1 704.9,-11.0 699.5,-10.5 698.8,-7.1 701.0,2.8 699.2,5.0 697.5,8.1 699.1,16.2 702.5,16.8 703.2,18.7 702.6,22.0 702.0,25.5 700.8,29.2 700.3,30.8 698.0,31.9 691.1,31.3 685.1,34.5 673.0,45.9 668.8,47.9 664.2,52.5 664.5,62.5 663.8,63.4 662.7,65.5 648.3,61.9 647.8,62.0 638.1,63.3 631.5,67.9 623.5,70.5 606.7,69.1 590.3,70.9 586.4,72.2 582.2,73.0 578.2,75.7 575.9,79.5 571.9,84.3 566.1,88.0 559.8,90.9 558.3,93.3 556.2,94.7 552.7,92.9 549.9,93.0 546.4,91.7 534.8,90.4 522.1,88.2 516.1,86.0 509.2,84.4 501.8,83.0 495.2,82.7 491.9,82.0 476.0,78.3 465.5,78.1 451.7,76.5 424.2,70.9 416.2,68.6 408.5,67.9 399.5,66.0 392.6,62.8 388.2,56.8 383.5,48.8 374.9,38.4 373.1,33.2 375.8,28.6 378.5,25.2 378.2,23.7 376.1,22.9 360.9,27.4 346.3,33.0 340.5,33.2 334.9,31.9 327.5,31.8 320.4,33.3 306.1,34.1 297.7,38.3 292.4,46.4 289.5,52.9 287.1,55.0 282.1,55.8 274.6,55.2 269.4,53.3 264.1,47.7 255.8,47.0 248.2,46.8 246.2,45.8 246.3,42.1 243.3,35.3 238.3,33.2 225.5,46.0 222.0,47.2 211.7,43.6 202.6,38.1 201.6,34.1 200.2,30.8 192.6,27.7 183.1,25.5 180.1,25.5 181.3,23.6 182.4,20.3 181.7,17.7 179.5,14.9 178.3,12.0 177.9,9.2 177.2,6.9 176.8,4.8 176.1,3.1Z"}, "l": "M124.6,119.0 124.8,119.4 119.6,124.4 117.1,126.8 116.9,127.3 116.7,130.0 117.5,133.7 117.6,134.9 117.5,135.1 117.3,135.6 116.4,137.3 115.0,138.7 107.4,144.9 106.5,146.4 106.5,146.4 106.5,146.5 106.4,146.7 107.6,152.9 107.3,155.7 106.5,156.8 104.1,158.4 104.1,158.4 103.9,158.7 103.7,159.5 103.7,160.1 103.8,160.4 104.2,161.2 104.3,161.3 107.3,165.8 107.0,165.9 105.5,165.2 103.4,162.3 102.1,158.7 102.9,157.0 104.0,152.3 100.0,147.5 98.0,144.2 97.9,143.1 98.3,142.8 98.7,142.8 101.4,143.8 105.3,142.8 108.0,140.6 112.6,135.2 114.5,132.7 114.0,130.0 113.5,127.4 113.5,127.1 116.0,123.0 120.7,119.5 124.2,118.7 124.6,119.0ZM276.6,147.7 277.7,151.5 276.1,156.4 270.6,165.0 266.4,171.4 264.3,179.1 265.7,180.8 266.8,186.4 266.2,191.2 265.3,193.7 264.9,194.7 263.3,193.9 259.6,192.8 257.9,188.9 256.0,192.3 252.7,191.0 252.6,189.9 251.3,189.6 250.6,188.9 251.2,188.7 254.8,185.1 254.8,182.9 253.9,180.8 254.9,179.0 252.9,177.9 256.6,175.1 259.4,172.2 267.1,165.1 271.1,157.8 274.2,153.2 275.1,150.3 276.6,147.7ZM361.5,490.2 363.2,492.3 362.7,494.4 362.1,500.3 358.8,501.0 353.4,496.6 352.8,493.1 355.2,490.0 360.5,489.5Z"};
+  const C = {roma:[400.8,567.8,"Roma"],florenca:[306.9,371.4,"Florença"],siena:[312.6,418.8,"Siena"],bolzano:[314.4,84.3,"Bolzano"],verona:[286.9,195.8,"Verona"],veneza:[388.7,195.9,"Veneza"],fco:[381.3,578.6,"FCO"],vce:[392,186,"VCE"],merano:[299.7,66.1,"Merano"],ortisei:[338.4,76.2,"Ortisei"]};
+  const LEGS = [
+    {id:"l1",a:"fco",b:"roma",c:"ro",n:"Aeroporto FCO → Hotel (Roma)",tr:"Leonardo Express + caminhada",tm:"~45 min · 32 min de trem + 10 min a pé",min:28,max:28,fixed:true,dt:"20/01",o:"Aeroporto de Fiumicino",d:"FH55 Grand Hotel Palatino, Roma"},
+    {id:"l2",a:"roma",b:"florenca",c:"fi",n:"Roma → Florença",tr:"Trem de alta velocidade",tm:"1h 30 min",min:40,max:100,dt:"24/01",o:"Roma Termini",d:"Firenze Santa Maria Novella"},
+    {id:"l3",a:"florenca",b:"siena",c:"si",n:"Florença → Siena → Florença",tr:"Ônibus expresso (Rapida 131R)",tm:"1h 15 min · por trecho / cada perna",min:36,max:48,dt:"25/01",o:"Firenze Santa Maria Novella",d:"Siena"},
+    {id:"l4",a:"florenca",b:"bolzano",c:"bz",n:"Florença → Bolzano",tr:"Trem de alta velocidade",tm:"3h a 3h 15 min",min:70,max:140,dt:"27/01",o:"Firenze Santa Maria Novella",d:"Bolzano stazione"},
+    {id:"l5",a:"bolzano",b:"verona",c:"vr",n:"Bolzano → Verona",tr:"Trem (regional ou rápido)",tm:"1h 30 min",min:30,max:50,dt:"30/01",o:"Bolzano stazione",d:"Verona Porta Nuova"},
+    {id:"l6",a:"verona",b:"veneza",c:"ve",n:"Verona → Veneza",tr:"Trem de alta velocidade",tm:"1h 15 min",min:30,max:60,dt:"01/02",o:"Verona Porta Nuova",d:"Venezia Santa Lucia"},
+    {id:"l7",a:"veneza",b:"vce",c:"ve",n:"Hotel (Veneza) → Aeroporto VCE",tr:"Barco Alilaguna (linha laranja)",tm:"~1 hora",min:30,max:30,fixed:true,dt:"03/02",transfer:true,o:"Rialto Venezia",d:"Aeroporto Marco Polo Venezia"}
+  ];
+  const OPT_LEGS = [
+    {id:"o1",a:"bolzano",b:"merano",c:"bz",n:"Opção 1 · Bolzano → Merano",tm:"trem regional, cerca de 40 min",dt:"29/01",o:"Bolzano stazione",d:"Merano stazione"},
+    {id:"o2",a:"bolzano",b:"ortisei",c:"bz",n:"Opção 2 · Bolzano → Ortisei",tm:"ônibus até o vilarejo",dt:"29/01",o:"Bolzano",d:"Ortisei"}
+  ];
+  let selLeg = null;
+  function curve(a,b,bend){ const [x1,y1]=C[a],[x2,y2]=C[b]; const mx=(x1+x2)/2, my=(y1+y2)/2, dx=x2-x1, dy=y2-y1, L=Math.hypot(dx,dy)||1; const k=bend*L; return "M"+x1+","+y1+" Q"+(mx-dy/L*k).toFixed(1)+","+(my+dx/L*k).toFixed(1)+" "+x2+","+y2; }
+  function drawMap(){
+    const cs = getComputedStyle(document.documentElement), col = k => cs.getPropertyValue("--"+k).trim();
+    let s = '<rect width="560" height="673" fill="var(--sea)"/>';
+    Object.keys(MAP.c).forEach(k => { s += '<path d="'+MAP.c[k]+'" fill="'+(k==="ITA"?"var(--land-it)":"var(--land)")+'" stroke="var(--border)" stroke-width="'+(k==="ITA"?1.2:.8)+'" stroke-linejoin="round"/>'; });
+    s += '<path d="'+MAP.l+'" fill="var(--sea)" stroke="#2f5566" stroke-width=".8"/>';
+    s += '<text class="mcountry" x="40" y="50">SUÍÇA</text><text class="mcountry" x="440" y="30">ÁUSTRIA</text><text class="mcountry" x="14" y="270">FRANÇA</text><text class="mcountry" x="478" y="128">ESLOVÊNIA</text>';
+    s += '<text class="msea" x="150" y="625">Mar Tirreno</text><text class="msea" x="430" y="350">Mar Adriático</text><text class="mcountry" x="220" y="520" style="font-size:22px;letter-spacing:.4em;opacity:.35">ITÁLIA</text>';
+    OPT_LEGS.forEach(l => { const on = !selLeg || selLeg===l.id; s += '<path class="route-path" d="'+curve(l.a,l.b,.15)+'" stroke="'+col(l.c)+'" stroke-width="'+(selLeg===l.id?3.5:2)+'" stroke-dasharray="2 5" opacity="'+(on?.9:.2)+'"/>'; });
+    LEGS.forEach(l => { const on = !selLeg || selLeg===l.id; s += '<path class="route-path" d="'+curve(l.a,l.b,l.id==="l3"?.25:.12)+'" stroke="'+col(l.c)+'" stroke-width="'+(selLeg===l.id?6:4)+'" opacity="'+(on?1:.2)+'"'+(l.id==="l1"||l.id==="l7"?' stroke-dasharray="1 0"':'')+'/>'; });
+    const big = {roma:"ro",florenca:"fi",siena:"si",bolzano:"bz",verona:"vr",veneza:"ve"};
+    const pos = {roma:[12,5,"start"],florenca:[-12,4,"end"],siena:[12,5,"start"],bolzano:[-12,16,"end"],verona:[-12,5,"end"],veneza:[10,20,"start"],fco:[-10,12,"end"],vce:[10,-6,"start"],merano:[-10,0,"end"],ortisei:[10,0,"start"]};
+    Object.keys(C).forEach(k => {
+      const [x,y,n] = C[k], p = pos[k];
+      if(big[k]) s += '<circle cx="'+x+'" cy="'+y+'" r="7.5" fill="var(--surface)" stroke="'+col(big[k])+'" stroke-width="3.5"/>';
+      else if(k==="fco"||k==="vce") s += '<g transform="translate('+x+','+y+')"><circle r="7" fill="var(--ink)"/><path d="M-4 0.5 L4 -0.5 M0.5 -3.5 L0 3.5 M-3 -1.5 L-3 1.5" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></g>';
+      else s += '<circle cx="'+x+'" cy="'+y+'" r="4" fill="'+col("bz")+'"/>';
+      s += '<text class="mlabel'+(big[k]?'':' small')+'" x="'+(x+p[0])+'" y="'+(y+p[1])+'" text-anchor="'+p[2]+'">'+esc(n)+'</text>';
+    });
+    $("#map").innerHTML = s;
+  }
+  function dirLink(l){ return "https://www.google.com/maps/dir/?api=1&travelmode=transit&origin="+encodeURIComponent(l.o)+"&destination="+encodeURIComponent(l.d); }
+  function renderLegs(){
+    $("#legs").innerHTML = '<span class="eyebrow">Trechos da viagem</span>' + LEGS.map((l,i) =>
+      '<button class="leg c-'+l.c+'" data-leg="'+l.id+'" aria-pressed="'+(selLeg===l.id)+'"><span class="ic">'+(i+1)+'</span><b>'+esc(l.n)+'</b><span>'+esc(l.dt)+' · '+esc(l.tr)+' · '+esc(l.tm.split(" · ")[0])+'</span><a href="'+esc(dirLink(l))+'" target="_blank" rel="noopener">Rota no Google Maps ↗</a></button>').join("") +
+      '<span class="eyebrow" style="margin-top:8px">29/01 · opções de bate e volta</span>' + OPT_LEGS.map(l =>
+      '<button class="leg c-'+l.c+'" data-leg="'+l.id+'" aria-pressed="'+(selLeg===l.id)+'"><span class="ic">✦</span><b>'+esc(l.n)+'</b><span>'+esc(l.tm)+'</span><a href="'+esc(dirLink(l))+'" target="_blank" rel="noopener">Rota no Google Maps ↗</a></button>').join("");
+  }
+  $("#legs").addEventListener("click", e => { if(e.target.closest("a")) return; const b = e.target.closest("[data-leg]"); if(!b) return; selLeg = selLeg===b.dataset.leg ? null : b.dataset.leg; renderLegs(); drawMap(); });
+
+  /* ================= Roteiro ================= */
+  let stageFilter = "all";
+  function renderRoute(){
+    const stops = [{k:"all",n:"Viagem toda",dt:"20/01 a 03/02"}].concat(ST.filter(s => s.k!=="si").map(s => ({k:s.k,n:s.n,dt:s.dates})));
+    $("#route").innerHTML = stops.map(s => '<button class="stop'+(s.k==="all"?'':' c-'+s.k)+'" data-stage="'+s.k+'" aria-pressed="'+(stageFilter===s.k)+'"><span class="dot"></span><span class="nm">'+esc(s.n)+'</span><span class="dt">'+esc(s.dt)+'</span></button>').join("");
+  }
+  $("#route").addEventListener("click", e => { const b = e.target.closest("[data-stage]"); if(!b) return; stageFilter = b.dataset.stage; renderRoute(); renderStages(); });
+  function dayCard(x){
+    const p = dparts(x.d), k = x.si ? "si" : x.e;
+    return '<article class="day c-'+k+'"><div class="date"><span class="wd">'+p.wd+'</span><span class="d">'+p.d+'</span><span class="m">'+p.m+'</span><span class="tag">'+esc(x.tag)+'</span></div>'+
+      '<div class="body"><div><h4>'+esc(x.t)+'</h4>'+(x.lead?'<p class="lead">'+esc(x.lead)+'</p>':'')+'</div>'+
+      '<ul class="slots">'+x.s.map(r => '<li class="slot"><span class="t">'+esc(r[0])+'</span><span>'+(r[1]?'<b>'+esc(r[1])+'</b> ':'')+r[2]+'</span></li>').join("")+'</ul>'+
+      (x.tip?'<div class="tip"><span class="eyebrow">'+esc(x.tip[0])+'</span>'+esc(x.tip[1])+'</div>':'')+
+      (x.transfer?'<div><button class="linkbtn" data-gotab="deslocamentos">Ver as opções de transfer →</button></div>':'')+
+      '</div></article>';
+  }
+  function renderStages(){
+    $("#stages").innerHTML = ST.filter(s => s.k!=="si" && (stageFilter==="all" || stageFilter===s.k)).map(s =>
+      '<section class="stage c-'+s.k+'"><div class="stage-h"><span class="eyebrow">'+esc(s.eb)+'</span><h3>'+esc(s.title)+'</h3><span class="hotel">'+esc(s.sub)+'</span>'+(s.intro?'<p>'+esc(s.intro)+'</p>':'')+'</div>'+
+      '<div class="days">'+D.filter(x => x.e===s.k).map(dayCard).join("")+'</div></section>').join("");
+  }
+  document.addEventListener("click", e => { const b = e.target.closest("[data-gotab]"); if(b) showTab(b.dataset.gotab); });
+
+  /* ================= Hospedagem ================= */
+  (function(){
+    const H = ST.filter(s => s.nn);
+    const tot = H.reduce((a,s) => a+s.nn, 0);
+    $("#nightbar").innerHTML = H.map(s => '<span class="c-'+s.k+'" style="flex:'+s.nn+'" title="'+esc(s.n)+': '+s.nn+' noites">'+esc(s.n)+' · '+s.nn+'</span>').join("");
+    const chk = {ro:["20/01","24/01"],fi:["24/01","27/01"],bz:["27/01","30/01"],vr:["30/01","01/02"],ve:["01/02","03/02"]};
+    const extra = {ro:"Via Cavour, bairro de Monti. Check-in às 14h; dá para deixar as malas no guarda-volumes na chegada. A cerca de 10 minutos a pé da Roma Termini.",fi:"Base para o bate e volta a Siena em 25/01. Partida em 27/01 da estação Santa Maria Novella.",bz:"Cerca de 8 minutos de caminhada.",vr:"Muito próximo à Piazza Bra e à Arena de Verona.",ve:"A passos da Ponte de Rialto. Do Santa Lucia, vaporetto Linha 1 ou 2 até a parada Rialto."};
+    $("#stays").innerHTML = H.map(s =>
+      '<article class="stay c-'+s.k+'"><div class="top"><span class="eyebrow">'+esc(s.eb.split(" · ")[0])+' · '+esc(s.n)+'</span><h4>'+esc(s.hotel)+'</h4></div>'+
+      '<div class="bd"><div class="nights">'+s.nn+' <small>noites</small></div>'+
+      '<dl><dt>Entrada</dt><dd>'+chk[s.k][0]+'</dd><dt>Saída</dt><dd>'+chk[s.k][1]+'</dd></dl>'+
+      '<p style="font-size:14px">'+esc(extra[s.k])+'</p>'+
+      '<div class="links"><a href="'+esc(gmap(s.q))+'" target="_blank" rel="noopener">Ver no Google Maps ↗</a><button class="linkbtn" data-gostage2="'+s.k+'">Dias nesta cidade →</button></div></div></article>').join("") +
+      '<p class="hint" style="grid-column:1/-1">Total: '+tot+' noites na Itália.</p>';
+    $("#stays").addEventListener("click", e => { const b = e.target.closest("[data-gostage2]"); if(!b) return; stageFilter = b.dataset.gostage2; renderRoute(); renderStages(); showTab("roteiro"); });
+  })();
+
+  /* ================= Deslocamentos ================= */
+  $("#legrows").innerHTML = LEGS.map(l => '<tr class="c-'+l.c+'"><td><span class="lg"><i></i>'+esc(l.n)+'</span><span class="sm">'+esc(l.dt)+'</span></td><td>'+esc(l.tr)+'</td><td>'+esc(l.tm.split(" · ")[0])+(l.tm.includes(" · ")?'<span class="sm">'+esc(l.tm.split(" · ")[1])+'</span>':'')+'</td><td class="cost">'+(l.fixed?eur(l.min)+' (fixo)':eur(l.min)+' a '+eur(l.max))+'</td></tr>').join("") +
+    '<tr class="total"><td colspan="3">Total estimado · casal<span class="sm">Transportes entre cidades e aeroportos</span></td><td class="cost">€ 264 a € 456</td></tr>';
+  const TR = [
+    {id:"ali",eb:"Melhor custo-benefício",n:"Alilaguna · Linha Laranja",p:"O barco sai da parada de Rialto e vai direto pelas águas até o Aeroporto Marco Polo.",cost:"cerca de € 15 por pessoa",time:"em torno de 1 hora",casal:30},
+    {id:"taxi",eb:"Mais confortável",n:"Táxi aquático privado",p:"A opção mais glamourosa: um barco privativo pega vocês perto do hotel e leva direto ao aeroporto.",cost:"€ 120 a € 150",time:"cerca de 30 minutos",casal:130},
+    {id:"bus",eb:"Alternativa",n:"Vaporetto + ônibus",p:"Vaporetto até a Piazzale Roma e, de lá, o ônibus expresso da viação ATVO para o aeroporto. Um pouco mais trabalhoso pelo sobe e desce com malas.",cost:null,time:null,casal:null}
+  ];
+  let trSel = store.get("it-tr","ali"); if(!TR.some(t => t.id===trSel && t.casal!=null)) trSel = "ali";
+  function renderTr(){
+    $("#opts").innerHTML = TR.map(t => '<button class="opt" data-tr="'+t.id+'" aria-pressed="'+(trSel===t.id)+'"'+(t.casal==null?' disabled':'')+'><span class="eyebrow">'+esc(t.eb)+'</span><h4>'+esc(t.n)+'</h4><p>'+esc(t.p)+'</p>'+
+      (t.cost?'<dl><dt>Custo</dt><dd>'+esc(t.cost)+'</dd><dt>Tempo</dt><dd>'+esc(t.time)+'</dd></dl>':'')+
+      '<span class="sel">'+(t.casal==null?'Sem valor no roteiro, não entra no total':(trSel===t.id?'✓ Usando no total':'Usar no total'))+'</span></button>').join("");
+    const base = LEGS.filter(l => !l.transfer), mn = base.reduce((a,l)=>a+l.min,0), mx = base.reduce((a,l)=>a+l.max,0);
+    const t = TR.find(x => x.id===trSel);
+    $("#tTotal").textContent = eur(mn+t.casal)+" a "+eur(mx+t.casal);
+    $("#tNote").textContent = "Transportes entre cidades e aeroportos, com "+(trSel==="ali"?"o Alilaguna (€ 30 o casal)":"o táxi aquático (cerca de € 130 o casal)")+" no transfer de Veneza.";
+  }
+  $("#opts").addEventListener("click", e => { const b = e.target.closest("[data-tr]"); if(!b || b.disabled) return; trSel = b.dataset.tr; store.set("it-tr", trSel); renderTr(); });
+
+  /* ================= Restaurantes ================= */
+  const MEALS = [
+    {e:"ro",d:"20/01",k:"Almoço",t:"Uma trattoria autêntica em Monti para a primeira massa da viagem."},
+    {e:"ro",d:"20/01",k:"Jantar",t:"Jantar romântico nas ruelas ao redor da Piazza di Spagna, ou em Monti, perto do hotel."},
+    {e:"ro",d:"21/01",k:"Almoço",t:"Arredores do Circo Máximo ou região da Via Celio Vibenna: um bom prato de massa e uma taça de vinho."},
+    {e:"ro",d:"21/01",k:"Jantar",t:"Trastevere: Aperol Spritz em um bar aquecido e jantar a dois nas ruelas iluminadas."},
+    {e:"ro",d:"22/01",k:"Almoço",t:"Prati, o bairro ao redor do Vaticano, menos voltado apenas para turistas."},
+    {e:"ro",d:"22/01",k:"Jantar",t:"Proximidades da Piazza Navona, depois de atravessar a Ponte Sant'Angelo."},
+    {e:"ro",d:"23/01",k:"Almoço",t:"Região da Via del Corso ou arredores da Piazza del Popolo."},
+    {e:"ro",d:"23/01",k:"Jantar",t:"Aperitivo italiano clássico e jantar de despedida especial no centro histórico."},
+    {e:"fi",d:"24/01",k:"Jantar",t:"Mercato Centrale ou uma trattoria próxima ao Hotel Globus."},
+    {e:"si",d:"25/01",k:"Almoço",t:"Massa tradicional toscana em Siena, como o pici."},
+    {e:"fi",d:"27/01",k:"Café",t:"Um autêntico espresso italiano no balcão de algum café próximo."}
+  ];
+  let mf = "all";
+  function renderMeals(){
+    const ks = ["all","ro","fi","si"];
+    $("#mealf").innerHTML = ks.map(k => '<button class="chipbtn'+(k==="all"?'':' c-'+k)+'" data-mf="'+k+'" aria-pressed="'+(mf===k)+'">'+(k==="all"?'':'<i></i>')+esc(k==="all"?"Todas":SK[k].n)+'</button>').join("");
+    $("#meals").innerHTML = MEALS.filter(m => mf==="all" || m.e===mf).map(m => '<div class="meal c-'+m.e+'"><span class="dt">'+m.d+' · '+esc(SK[m.e].n)+'</span><span class="k">'+esc(m.k)+'</span><span>'+esc(m.t)+'</span></div>').join("") +
+      '<p class="hint">Bolzano, Verona e Veneza não têm refeições citadas no roteiro: fica valendo o combinado de escolher na hora.</p>';
+  }
+  $("#mealf").addEventListener("click", e => { const b = e.target.closest("[data-mf]"); if(!b) return; mf = b.dataset.mf; renderMeals(); });
+
+  /* ================= Reservas (do roteiro) ================= */
+  const TASKS = [
+    {id:"tr-ro-fi",c:"fi",w:"now",wl:"60 a 90 dias antes",t:"Trem Roma → Florença (24/01)",q:"Compre as passagens com antecedência nos sites da Trenitalia ou Italo Treno.",d:"Faixa mínima: comprar de 26/10 a 25/11/2026 (90 a 60 dias antes)."},
+    {id:"tr-fi-bz",c:"bz",w:"now",wl:"60 a 90 dias antes",t:"Trem Florença → Bolzano (27/01, saída 10h00 de S.M.N.)",q:"Trem de alta velocidade, 3h a 3h 15 min.",d:"Faixa mínima: comprar de 29/10 a 28/11/2026."},
+    {id:"tr-bz-vr",c:"vr",w:"now",wl:"60 a 90 dias antes",t:"Trem Bolzano → Verona (30/01)",q:"Trem (regional ou rápido), 1h 30 min.",d:"Faixa mínima: comprar de 01/11 a 01/12/2026."},
+    {id:"tr-vr-ve",c:"ve",w:"now",wl:"60 a 90 dias antes",t:"Trem Verona → Veneza (01/02)",q:"Trem de alta velocidade, 1h 15 min.",d:"Faixa mínima: comprar de 03/11 a 03/12/2026."},
+    {id:"vaticano",c:"ro",w:"soon",wl:"Antes da viagem",t:"Museus Vaticanos e Capela Sistina (22/01, 09h00)",q:"Ingressos antecipados são obrigatórios!",d:"Etapa Roma, dia 3."},
+    {id:"borghese",c:"ro",w:"soon",wl:"Meses antes",t:"Galleria Borghese (23/01, manhã)",q:"As reservas esgotam meses antes.",d:"Etapa Roma, dia 4."},
+    {id:"pantheon",c:"ro",w:"soon",wl:"Antes da viagem",t:"Pantheon (23/01, tarde)",q:"Lembrem-se de reservar a entrada, que agora é paga.",d:"Etapa Roma, dia 4."},
+    {id:"uffizi",c:"fi",w:"soon",wl:"Antes da viagem",t:"Galleria degli Uffizi ou Galeria da Accademia (26/01, manhã)",q:"Com ingressos comprados com antecedência.",d:"Etapa Florença, terça."},
+    {id:"cupula",c:"fi",w:"soon",wl:"Antes da viagem",t:"Cúpula de Brunelleschi ou Campanário de Giotto (26/01, tarde)",q:"Reservem este horário se quiserem subir.",d:"Etapa Florença, terça."},
+    {id:"sanmarco",c:"ve",w:"soon",wl:"Antes da viagem",t:"Basílica de São Marcos (02/02, manhã)",q:"Visitem a Basílica de São Marcos (reservem antes).",d:"Etapa Veneza, dia 2."},
+    {id:"opcao29",c:"bz",w:"later",wl:"Antes de 29/01",t:"Escolher o dia 29/01: Merano ou Ortisei",q:"Opção 1: trem regional até Merano. Opção 2: ônibus até Ortisei, Val Gardena.",d:"Etapa Bolzano, dia 3."},
+    {id:"bus131",c:"si",w:"later",wl:"Na véspera, em Florença",t:"Ônibus Rapida 131R Florença ⇄ Siena (25/01)",q:"Dá para comprar pelo aplicativo já em Florença ou na bilheteria da rodoviária um dia antes.",d:"App at bus (Autolinee Toscane)."},
+    {id:"alilaguna",c:"ve",w:"later",wl:"Online ou na hora",t:"Alilaguna Linha Laranja Rialto → Aeroporto (03/02)",q:"Compre online e troque pelo bilhete físico nas docas, ou compre nos guichês na hora de embarcar.",d:"www.alilaguna.it"}
+  ];
+  function taskHtml(t){
+    const done = !!doneMap[t.id];
+    return '<div class="task c-'+t.c+(done?' done':'')+'"><input type="checkbox" id="tk-'+t.id+'" data-id="'+t.id+'"'+(done?' checked':'')+(canWrite?'':' disabled')+'>'+
+      '<label for="tk-'+t.id+'"><b>'+esc(t.t)+'</b>'+(t.q?'<q>'+esc(t.q)+'</q>':'')+'<span>'+esc(t.d)+'</span></label><span class="when '+t.w+'">'+esc(t.wl)+'</span></div>';
+  }
+  function renderTasks(){
+    $("#tasks").innerHTML = TASKS.map(taskHtml).join("");
+    const extra = SUG.filter(s => s.task && sugOn[s.id]).map(s => Object.assign({c:s.c}, s.task, {id:"s-"+s.id}));
+    $("#extraWrap").hidden = !extra.length;
+    $("#tasksx").innerHTML = extra.map(taskHtml).join("");
+    const all = TASKS.concat(extra), n = all.filter(t => doneMap[t.id]).length;
+    $("#prog").style.width = Math.round(100*n/all.length)+"%";
+    const urgent = all.filter(t => t.w==="now" && !doneMap[t.id]).length;
+    const badge = $("#badge"); badge.textContent = urgent; badge.hidden = urgent===0;
+  }
+  $("#reservas").addEventListener("change", async e => {
+    const id = e.target.dataset && e.target.dataset.id; if(!id) return;
+    doneMap = Object.assign({}, doneMap, {[id]: e.target.checked}); renderTasks();
+    if(db){ try{ await db.doc("checklist/"+id).set({done: e.target.checked}); }catch(err){ handleWriteErr(err); } }
+    else store.set("it-done", doneMap);
+  });
+
+  /* ================= Sugestões ================= */
+  const SUG = [
+    {id:"carnaval",c:"ve",city:"ve",tag:"Atenção",t:"Verona e Veneza caem no Carnaval de Veneza",
+      p:"O Carnaval de Veneza 2027 vai de 27/01 a 09/02. Vocês estarão em Veneza de 01 a 03/02, no meio da festa.",
+      li:["Se os hotéis de Verona e Veneza ainda não estiverem garantidos, reservem logo: a cidade lota e os preços sobem.","Vaporetto e Praça São Marcos ficam mais cheios; a reserva da Basílica fica ainda mais importante.","Vale levar ou comprar máscaras e ver o programa oficial quando sair. Programação de 2027 "+TBC+"."],
+      src:[["Europe for Visitors: datas do Carnaval de Veneza","https://europeforvisitors.com/venice/articles/venice-carnival-dates.htm"]]},
+    {id:"trens",c:"bz",city:"all",tag:"Agora",t:"A janela de 60 a 90 dias dos trens já começou",
+      p:"O próprio roteiro diz que a faixa mínima de preço exige comprar com 60 a 90 dias de antecedência. Pelas datas da viagem, isso dá:",
+      li:["Roma → Florença (24/01): de 26/10 a 25/11/2026","Florença → Bolzano (27/01): de 29/10 a 28/11/2026","Bolzano → Verona (30/01): de 01/11 a 01/12/2026","Verona → Veneza (01/02): de 03/11 a 03/12/2026"],
+      src:[]},
+    {id:"trevi",c:"ro",city:"ro",tag:"Custo novo",t:"Fontana di Trevi agora cobra € 2 por pessoa",
+      p:"Desde 02/02/2026, a área junto à fonte é paga: € 2 por pessoa, de segunda a sexta das 11h30 às 22h e nos fins de semana das 9h às 22h. Fora desse horário a visita é grátis. Em 20/01/2027 (quarta), o horário do roteiro (15h30 a 17h30) cai no período pago.",
+      li:["A praça em volta continua livre; o ingresso é só para chegar à beira da fonte.","Compra online ou no local."],
+      task:{w:"later",wl:"No dia",t:"Fontana di Trevi: ingresso de € 2 por pessoa (20/01)",q:"",d:"Online ou no local. Grátis antes das 11h30 em dia útil."},
+      src:[["SiViaggia: Fontana di Trevi a pagamento","https://siviaggia.it/notizie/fontana-trevi-pagamento-biglietto-roma-2026/569180/"],["Il Fatto Quotidiano, 09/02/2026","https://www.ilfattoquotidiano.it/2026/02/09/oggi-anita-ekberg-dovrebbe-fare-la-fila-per-2-euro-la-fontana-di-trevi-e-a-pagamento-lironia-del-financial-times/8285430/"]]},
+    {id:"coliseu",c:"ro",city:"ro",tag:"Reserva",t:"Coliseu, Fórum e Palatino: comprar o ingresso antes",
+      p:"O roteiro não fala do ingresso do dia 21/01. O bilhete padrão de 24h custa € 18 e cobre Coliseu, Fórum Romano e Palatino. A Full Experience (€ 24) inclui a arena ou os subterrâneos e esgota rápido; o ideal é comprar com 30 dias ou mais no site oficial.",
+      li:["Escolham horário logo cedo, já que o roteiro começa às 08h30."],
+      task:{w:"soon",wl:"30+ dias antes",t:"Coliseu, Fórum e Palatino (21/01, 08h30)",q:"",d:"Site oficial colosseo.it. Padrão € 18 ou Full Experience € 24."},
+      src:[["Mala de Aventuras: preços do Coliseu 2026","https://www.maladeaventuras.com/como-visitar-o-coliseu-roma/"]]},
+    {id:"vaticano",c:"ro",city:"ro",tag:"Data",t:"Vaticano: as vendas abrem 60 dias antes",
+      p:"Os ingressos dos Museus Vaticanos saem no site oficial exatamente 60 dias antes da visita: para 22/01/2027, por volta de 23/11/2026. Custam € 25 online (€ 20 + € 5 de reserva). Os primeiros horários da manhã esgotam em poucas horas na alta temporada.",
+      li:["Vale pôr um lembrete no celular para 23/11/2026."],
+      src:[["Loudavým krokem: Musei Vaticani 2026","https://loudavymkrokem.cz/it/musei-vaticani-biglietti-cosa-vedere/"]]},
+    {id:"borghese",c:"ro",city:"ro",tag:"Reserva",t:"Galleria Borghese: visita em blocos de 2 horas",
+      p:"A entrada é só com horário marcado, em blocos fixos de 2 horas, por cerca de € 18 a € 20. Não vendem na porta. Para caber no bloco de 09h30 a 12h30 do roteiro, um horário logo no início da manhã deixa tempo para o parque depois.",
+      li:["Cheguem uns 30 minutos antes do horário marcado."],
+      src:[["Loudavým krokem: Galleria Borghese","https://loudavymkrokem.cz/it/galleria-borghese-biglietti-cosa-vedere/"]]},
+    {id:"pantheon",c:"ro",city:"ro",tag:"Custo",t:"Pantheon: ingresso de € 5",
+      p:"O Pantheon passou a cobrar € 5 por pessoa em 2023. Valor para 2027 "+TBC+".",
+      li:[],src:[["Sky TG24: Pantheon a pagamento","https://tg24.sky.it/cronaca/2023/03/16/roma-pantheon-a-pagamento"]]},
+    {id:"taxi-fco",c:"ro",city:"ro",tag:"Alternativa",t:"Táxi do aeroporto de Roma tem tarifa fixa",
+      p:"O roteiro cita o táxi como opção na chegada. De Fiumicino até o centro (dentro das Muralhas Aurelianas, o que inclui Monti), a tarifa é fixa em € 55 com bagagem incluída. Contra € 28 do Leonardo Express para o casal, custa € 27 a mais, mas deixa na porta do hotel após o voo noturno.",
+      li:["Usem só os táxis brancos oficiais, no ponto em frente ao desembarque."],
+      src:[["Blue Keys: Fiumicino ao centro 2026","https://bluekeys.it/blog/fiumicino-rome-transfer-leonardo-express-train"]]},
+    {id:"brunelleschi",c:"fi",city:"fi",tag:"Reserva",t:"Cúpula de Brunelleschi: o passe inclui o Campanário",
+      p:"O Brunelleschi Pass custa € 30 e inclui a Cúpula, o Campanário de Giotto, o Batistério, o Museu da Ópera do Duomo e Santa Reparata, válido por 3 dias. Só a Cúpula tem horário marcado. Não aceita troca nem reembolso.",
+      li:["São 463 degraus, sem elevador: cerca de 45 a 50 minutos de subida e descida.","Entrada pela Porta della Mandorla, 15 minutos antes."],
+      src:[["Italy Museum: Brunelleschi Pass","https://www.italy-museum.com/it/firenze/brunelleschi-pass"]]},
+    {id:"otzi",c:"bz",city:"bz",tag:"Horário",t:"Museu do Ötzi abre de terça a domingo",
+      p:"O Museu Arqueológico do Tirol do Sul abre de terça a domingo, das 10h às 18h, e fecha às segundas. Em 28/01/2027 (quinta) está aberto. Ingresso adulto € 13; reserva antecipada recomendada.",
+      li:[],src:[["Meranerland: Ötzi","https://meranerland.org/en/highlights/history/oetzi"]]},
+    {id:"renon",c:"bz",city:"bz",tag:"Dica",t:"Teleférico do Renon sai a cada 4 minutos",
+      p:"A cabine sai a cada 4 minutos e a subida leva 12 minutos, de Bolzano até Soprabolzano (Oberbozen). Horário de inverno e preço de 2027 "+TBC+" em ritten.com.",
+      li:[],src:[["Südtirol: Funivia del Renon","https://www.suedtirol.info/en/en/experiences-and-events/plp-experiences/experiences-south-tyrol/pdp-experience.smgpoi4092c7f3556cf90a08737717b34ebe03.cablecar-ritten-bozen-oberbozen.soprabolzano-oberbozen"]]},
+    {id:"julieta",c:"vr",city:"vr",tag:"Reserva",t:"Casa de Julieta agora só com reserva",
+      p:"Desde 01/04/2026 o pátio e a casa só recebem visitas com horário marcado. Pátio com a varanda e a estátua: € 5. Pátio mais o interior da casa: € 12. Em 31/01/2027 (domingo) abre das 9h às 19h. A entrada é pela Piazzetta Navona.",
+      li:[],
+      task:{w:"soon",wl:"Antes da viagem",t:"Casa de Julieta (31/01, manhã)",q:"",d:"Pátio € 5 ou pátio + casa € 12, com horário marcado."},
+      src:[["Finestre sull'Arte: novas regras da Casa de Julieta","https://www.finestresullarte.info/attualita/da-1-aprile-2026-nuove-modalita-di-visita-cortile-e-casa-giulietta-a-verona"]]},
+    {id:"sanmarco",c:"ve",city:"ve",tag:"Reserva",t:"Basílica de São Marcos: ingresso básico de € 10",
+      p:"No site oficial, a entrada básica sai a partir de € 10. De segunda a sábado abre das 9h30 às 17h15; em 02/02/2027 (terça) está aberta. Pala d'Oro, museu e terraço dos cavalos custam à parte.",
+      li:[],src:[["Art Visit Guide: Basílica de São Marcos 2026","https://www.artvisitguide.com/st-marks-basilica-venice-tickets-2026-prices-pala-doro-campanile/"],["Bilheteria oficial","https://tickets.basilicasanmarco.it/en/products/welcome/5937"]]},
+    {id:"taxa-ve",c:"ve",city:"ve",tag:"Tranquilo",t:"Taxa de acesso a Veneza não deve valer em fevereiro",
+      p:"Em 2026 a taxa de acesso só foi cobrada em dias de abril a julho, e quem dorme em hotel na cidade é isento. O calendário de 2027 ainda não saiu "+TBC+".",
+      li:[],src:[["Wego: Venice Access Fee 2026","https://blog.wego.com/venice-access-fee/"]]}
+  ];
+  let sf = "all";
+  function renderSug(){
+    const ks = ["all","ro","fi","bz","vr","ve"];
+    $("#sugf").innerHTML = ks.map(k => '<button class="chipbtn'+(k==="all"?'':' c-'+k)+'" data-sf="'+k+'" aria-pressed="'+(sf===k)+'">'+(k==="all"?'':'<i></i>')+esc(k==="all"?"Todas":SK[k].n)+'</button>').join("");
+    $("#sgrid").innerHTML = SUG.filter(s => sf==="all" || s.city===sf || s.city==="all").map(s =>
+      '<article class="scard c-'+s.c+'"><div class="meta"><span class="pill">'+esc(s.tag)+'</span><span class="hint">'+(s.city==="all"?"Viagem toda":esc(SK[s.city].n))+'</span></div>'+
+      '<h4>'+esc(s.t)+'</h4><p>'+s.p+'</p>'+(s.li.length?'<ul>'+s.li.map(x => '<li>'+x+'</li>').join("")+'</ul>':'')+
+      (s.src.length?'<div class="src">Fonte: '+s.src.map(x => '<a href="'+esc(x[1])+'" target="_blank" rel="noopener">'+esc(x[0])+'</a>').join(" · ")+'</div>':'<div class="src">Conta feita a partir das datas do roteiro.</div>')+
+      (s.task?'<div class="sfoot"><span class="hint">Vira um item do checklist</span><button class="addbtn" data-sug="'+s.id+'" aria-pressed="'+(!!sugOn[s.id])+'"'+(canWrite?'':' disabled')+'>'+(sugOn[s.id]?'✓ Nas reservas':'+ Adicionar às reservas')+'</button></div>':'')+
+      '</article>').join("");
+  }
+  $("#sugf").addEventListener("click", e => { const b = e.target.closest("[data-sf]"); if(!b) return; sf = b.dataset.sf; renderSug(); });
+  $("#sgrid").addEventListener("click", async e => {
+    const b = e.target.closest("[data-sug]"); if(!b || b.disabled) return;
+    const id = b.dataset.sug, val = !sugOn[id];
+    sugOn = Object.assign({}, sugOn, {[id]: val}); renderSug(); renderTasks();
+    if(db){ try{ await db.doc("sug/"+id).set({on: val}); }catch(err){ handleWriteErr(err); } }
+    else store.set("it-sug", sugOn);
+  });
+  const WX = [["Roma","ro",12,4,"20 a 24/01"],["Florença","fi",11,2,"24 a 27/01"],["Bolzano","bz",7,-3,"27 a 30/01"],["Verona","vr",7,-1,"30/01 a 01/02"],["Veneza","ve",8,0,"01 a 03/02"]];
+  $("#weather").innerHTML = WX.map(w => { const lo=-5, hi=15, l=(w[3]-lo)/(hi-lo)*100, r=(w[2]-lo)/(hi-lo)*100;
+    return '<div class="wx c-'+w[1]+'"><span class="pl">'+w[0]+'</span><span class="when2">'+w[4]+'</span><div class="t"><span class="hi">'+w[2]+'°</span><span class="lo">'+w[3]+'°</span></div><div class="bar" aria-hidden="true"><span style="left:'+l+'%;right:'+(100-r)+'%"></span></div><span class="hint">máxima e mínima médias</span></div>'; }).join("");
+  const SRC = [];
+  SUG.forEach(s => s.src.forEach(x => { if(!SRC.some(y => y[1]===x[1])) SRC.push(x); }));
+  [["Climi e Viaggi: clima de Roma","https://www.climieviaggi.it/clima/italia/roma"],["Climi e Viaggi: clima de Florença","https://www.climieviaggi.it/clima/italia/firenze"],["Climi e Viaggi: clima de Bolzano","https://www.climieviaggi.it/clima/italia/bolzano"],["Climi e Viaggi: clima de Verona","https://www.climieviaggi.it/clima/italia/verona"],["Climi e Viaggi: clima de Veneza","https://www.climieviaggi.it/clima/italia/venezia"]].forEach(x => SRC.push(x));
+  $("#sources").innerHTML = SRC.map(s => '<li><a href="'+esc(s[1])+'" target="_blank" rel="noopener">'+esc(s[0])+'</a></li>').join("");
+
+  /* ================= Abas e sincronização ================= */
+  const TABS = ["panorama","roteiro","hospedagem","deslocamentos","restaurantes","reservas","sugestoes"];
+  const tabsEl = $(".tabs");
+  function moveInd(center){
+    const b = $('.tabs button[aria-selected="true"]'), ind = $(".tabind"); if(!b || !ind) return;
+    ind.style.width = b.offsetWidth + "px"; ind.style.transform = "translateX(" + b.offsetLeft + "px)";
+    ind.style.backgroundColor = getComputedStyle(b).getPropertyValue("--tc");
+    if(center) tabsEl.scrollTo({left: b.offsetLeft - (tabsEl.clientWidth - b.offsetWidth)/2});
+  }
+  function tabArrows(){ const max = tabsEl.scrollWidth - tabsEl.clientWidth; $("#tabL").hidden = tabsEl.scrollLeft <= 4; $("#tabR").hidden = tabsEl.scrollLeft >= max - 4; }
+  function setTab(name){
+    if(!TABS.includes(name)) name = "panorama";
+    TABS.forEach(t => { $("#"+t).hidden = t!==name; });
+    $$(".tabs button").forEach(b => b.setAttribute("aria-selected", String(b.dataset.tab===name)));
+    return name;
+  }
+  function showTab(name){ name = setTab(name); store.set("it-tab", name); window.scrollTo({top:0}); moveInd(true); }
+  $("#tabL").addEventListener("click", () => tabsEl.scrollBy({left: -tabsEl.clientWidth*0.6}));
+  $("#tabR").addEventListener("click", () => tabsEl.scrollBy({left: tabsEl.clientWidth*0.6}));
+  tabsEl.addEventListener("scroll", tabArrows, {passive:true});
+  addEventListener("resize", () => { moveInd(false); tabArrows(); });
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(() => { moveInd(true); tabArrows(); });
+  $$(".tabs button").forEach(b => b.addEventListener("click", () => showTab(b.dataset.tab)));
+  function setSync(on, text){ const s = $("#sync"); s.classList.toggle("on", on); s.lastElementChild.textContent = text; }
+  function handleWriteErr(err){
+    if(err && (err.code==="invalid_argument" || err.code==="permission_denied" || err.code==="not_granted")){ canWrite=false; setSync(true,"Você pode ver tudo, mas não alterar as marcações."); renderTasks(); renderSug(); }
+    else setSync(false,"Não consegui salvar agora. Tente de novo em instantes.");
+  }
+  drawMap(); renderLegs(); renderRoute(); renderStages(); renderTr(); renderMeals(); renderSug(); renderTasks();
+  (function(){ const h = (location.hash||"").slice(1); const t = setTab(TABS.includes(h) ? h : store.get("it-tab","panorama")); requestAnimationFrame(() => { moveInd(true); tabArrows(); }); return t; })();
+
+  (async () => {
+    try{
+      if(!window.claude || !window.claude.use) return;
+      const d = await window.claude.use("db"); if(!d) return;
+      const u = await window.claude.use("user");
+      if(u && u.can){ try{ const c = await u.can("data.write"); if(c===false) canWrite=false; }catch(e){} }
+      db = d;
+      setSync(true, canWrite ? "Compartilhado entre vocês dois, atualiza ao vivo." : "Compartilhado (somente leitura para você).");
+      const lost = () => setSync(false, "Conexão perdida. Recarregue a página.");
+      db.collection("checklist").onSnapshot(s => { const m={}; s.docs.forEach(x => { const v=x.data(); if(v && v.done) m[x.id]=true; }); doneMap=m; renderTasks(); }, lost);
+      db.collection("sug").onSnapshot(s => { const m={}; s.docs.forEach(x => { const v=x.data(); if(v && v.on) m[x.id]=true; }); sugOn=m; renderSug(); renderTasks(); }, lost);
+      renderTasks(); renderSug();
+    }catch(e){}
+  })();
+})();
+</script>
+
+</body>
+</html>
