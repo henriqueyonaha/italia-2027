@@ -306,11 +306,11 @@ tr.total td.cost{font-size:16px}
 .addbtn{border:1.5px solid var(--c);background:var(--surface);color:var(--c);border-radius:999px;padding:4px 12px;font-size:12.5px;font-weight:700;cursor:pointer;transition:background-color .18s,color .18s}
 .addbtn[aria-pressed="true"]{background:var(--c);color:var(--on)}
 .addbtn:disabled{opacity:.6;cursor:default}
-.weather{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.weather{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
 .wx{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;display:grid;gap:6px;border-top:4px solid var(--c)}
 .wx .pl{font-weight:600;font-size:14px}
 .wx .when2{font-size:11.5px;color:var(--muted)}
-.wx .t{display:flex;align-items:baseline;gap:8px;font-family:var(--font-display);font-weight:700}
+.wx .t{display:flex;align-items:baseline;gap:8px;font-family:var(--font-body);font-weight:700;font-variant-numeric:tabular-nums}
 .wx .hi{font-size:28px;color:var(--ro)}
 .wx .lo{font-size:19px;color:var(--bz)}
 .wx .bar{height:6px;border-radius:3px;background:var(--line);position:relative;overflow:hidden}
@@ -1049,7 +1049,7 @@ tr.total td.cost{font-size:16px}
   });
   const WX = [["Roma","ro",12,4,"20 a 24/01"],["Florença","fi",11,2,"24 a 27/01"],["Bolzano","bz",7,-3,"27 a 30/01"],["Verona","vr",7,-1,"30/01 a 01/02"],["Veneza","ve",8,0,"01 a 03/02"]];
   $("#weather").innerHTML = WX.map(w => { const lo=-5, hi=15, l=(w[3]-lo)/(hi-lo)*100, r=(w[2]-lo)/(hi-lo)*100;
-    return '<div class="wx c-'+w[1]+'"><span class="pl">'+w[0]+'</span><span class="when2">'+w[4]+'</span><div class="t"><span class="hi">'+w[2]+'°</span><span class="lo">'+w[3]+'°</span></div><div class="bar" aria-hidden="true"><span style="left:'+l+'%;right:'+(100-r)+'%"></span></div><span class="hint">máxima e mínima médias</span></div>'; }).join("");
+    return '<div class="wx c-'+w[1]+'"><span class="pl">'+w[0]+'</span><span class="when2">'+w[4]+'</span><div class="t"><span class="hi">'+String(w[2]).replace("-","−")+'°</span><span class="lo">'+String(w[3]).replace("-","−")+'°</span></div><div class="bar" aria-hidden="true"><span style="left:'+l+'%;right:'+(100-r)+'%"></span></div><span class="hint">máxima e mínima médias</span></div>'; }).join("");
   const SRC = [];
   SUG.forEach(s => s.src.forEach(x => { if(!SRC.some(y => y[1]===x[1])) SRC.push(x); }));
   [["Climi e Viaggi: clima de Roma","https://www.climieviaggi.it/clima/italia/roma"],["Climi e Viaggi: clima de Florença","https://www.climieviaggi.it/clima/italia/firenze"],["Climi e Viaggi: clima de Bolzano","https://www.climieviaggi.it/clima/italia/bolzano"],["Climi e Viaggi: clima de Verona","https://www.climieviaggi.it/clima/italia/verona"],["Climi e Viaggi: clima de Veneza","https://www.climieviaggi.it/clima/italia/venezia"]].forEach(x => SRC.push(x));
